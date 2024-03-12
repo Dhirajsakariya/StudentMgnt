@@ -95,7 +95,7 @@ const customToastStyle = {
                 <h2 className='signup'>Sign Up</h2>
                 <div className='form-groupl'>
                     <label className='labell'>Name:</label>
-                    <input className='inputl' type='text' value={name} onChange={(e)=> setName(e.target.value)} placeholder='Name'
+                    <input className='inputl' type='text' value={name} onChange={(e)=> setName(e.target.value)} placeholder='Full Name'
                     name='name'  required />
                     <FaRegUserCircle className='iconle' />
                 </div>
