@@ -125,7 +125,7 @@ const handleUserChange = (e) => {
                          required />
                         {showPassword ? <MdVisibility className='iconl' onClick={togglePasswordVisibility} /> : <MdVisibilityOff className='iconl' onClick={togglePasswordVisibility} />}
                     </div>
-                    <CiLock className='iconll' />
+                    
                 </div>
                 <div className='forgotl'>
                      <input type='checkbox' /><span>Remember me</span> {/*checked={rememberMe} onChange={handleRememberMeChange}*/}
