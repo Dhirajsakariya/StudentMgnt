@@ -23,7 +23,7 @@ const Familydetail = () => {
     birthDate: '',
     relation: '',
   });
-
+  const[firstNameError,setFirstNameError] =useState([]);
   const [familyMembers, setFamilyMembers] = useState([]);
   const [genderError, setGenderError] = useState('');
   const [relationError, setRelationError] = useState('');
@@ -66,16 +66,20 @@ const Familydetail = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.firstName || !formData.lastName || !formData.gender || !formData.birthDate || !formData.relation) {
-      toast.error('All fields are required!');
-      return;
-  }
+  //   if (!formData.firstName || !formData.lastName || !formData.gender || !formData.birthDate || !formData.relation) {
+  //     toast.error('All fields are required!');
+  //     return;
+  // }
+     if(!formData.firstName)
+    {
+      setFirstNameError('Please Enter a FirstName');
+    }
 
-    if (!formData.gender) {
+    else if (!formData.gender) {
       setGenderError('Please select a gender');
       return;
     }
-    if (!formData.relation) {
+    else if (!formData.relation) {
       setRelationError('Please select a Relation');
       return;
     }
@@ -151,9 +155,9 @@ const Familydetail = () => {
           birthDate: '',
           relation: '',
         });
-      } else {
-        toast.error(editing ? "Editing Failed!" : "Adding Failed!");
-      }
+       } //else {
+      //   toast.error(editing ? "Editing Failed!" : "Adding Failed!");
+      // }
   
     } catch (error) {
       toast.error(error.message || (editing ? 'Failed to edit family member' : 'Failed to add family member'));
