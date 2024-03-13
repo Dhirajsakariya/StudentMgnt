@@ -66,6 +66,10 @@ const Familydetail = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.firstName || !formData.lastName || !formData.gender || !formData.birthDate || !formData.relation) {
+      toast.error('All fields are required!');
+      return;
+  }
 
     if (!formData.gender) {
       setGenderError('Please select a gender');
