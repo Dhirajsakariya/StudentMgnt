@@ -62,7 +62,15 @@ const handleSubmit = async (e) => {
           },
           body: JSON.stringify(updateUserData)
       });
-
+      if (!updateUserData.gender) {
+        toast.error('Please Select a Gender!');
+        return;
+       }
+       if(!updateUserData.mobileNumber)
+       {
+        toast.error('Please Enter a MobileNumber');
+       }
+       
       if (response.ok) {
 
           setTimeout(() => {
@@ -80,7 +88,7 @@ const handleSubmit = async (e) => {
           setName(updateUserData.name);
           toast.success("User details updated successfully!");
       } else {
-          toast.error('Failed to update user details');
+          
       }
   } catch {
       toast.error('Failed to update user details');
