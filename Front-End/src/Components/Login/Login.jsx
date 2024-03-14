@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Login.css';
 import config from './config'; 
 import { useHistory,useLocation } from 'react-router-dom';
-import { MdEmail, MdVisibility, MdVisibilityOff } from "react-icons/md"; 
-import { CiLock } from "react-icons/ci";
+import { IoEyeOutline,IoEyeOffOutline } from "react-icons/io5";
+import { CgMail } from "react-icons/cg";
 import { toast, Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { getEmail} from './actions';
@@ -18,7 +18,6 @@ const Login = () => {
     const navigate = useHistory();
     const [rememberMe, setRememberMe] = useState(false); // Add rememberMe state
 
-    //remember me
     useEffect(() => {
         const storedUser = localStorage.getItem('rememberedUser');
         const storedPassword = localStorage.getItem('rememberedPassword');
@@ -33,8 +32,7 @@ const Login = () => {
         setRememberMe(!rememberMe);
     };
 
-//comment
-useEffect(() => {
+   useEffect(() => {
         const registeredEmail = localStorage.getItem('registeredEmail');
         if (registeredEmail) {
             setEmail(registeredEmail);
@@ -138,7 +136,7 @@ const handleUserChange = (e) => {
                         required
                     /> 
                 </div>
-                <MdEmail className='icone'/>
+                <CgMail className='icone'/>
                 <div className='form-groupl'>
                     <label className='labell'>Password:</label>
                     <div className='password-input'>
@@ -147,7 +145,7 @@ const handleUserChange = (e) => {
                          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~\@\!\#\$\%\^\&\*\?]).{8,15}$"
                          title="Must contain at least one  number and one uppercase and one lowercase letter and One special Charecter, and at least 8 characters"
                          required />
-                        {showPassword ? <MdVisibility className='iconl' onClick={togglePasswordVisibility} /> : <MdVisibilityOff className='iconl' onClick={togglePasswordVisibility} />}
+                        {showPassword ? <IoEyeOutline className='iconl' onClick={togglePasswordVisibility} /> : <IoEyeOffOutline  className='iconl' onClick={togglePasswordVisibility} />}
                     </div>
                 </div>
                 <div className='forgotl'>
