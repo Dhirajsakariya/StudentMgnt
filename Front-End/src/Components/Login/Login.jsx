@@ -16,6 +16,23 @@ const Login = () => {
     const dispatch = useDispatch();
     const location=useLocation();
     const navigate = useHistory();
+    const [rememberMe, setRememberMe] = useState(false); // Add rememberMe state
+
+    //remember me
+    useEffect(() => {
+        const storedUser = localStorage.getItem('rememberedUser');
+        const storedPassword = localStorage.getItem('rememberedPassword');
+        if (storedUser && storedPassword) {
+            setEmail(storedUser);
+            setPassword(storedPassword);
+            setRememberMe(true); // Set rememberMe state when rememberedUser and rememberedPassword are found
+        }
+    }, []);
+
+    const handleRememberMeChange = () => {
+        setRememberMe(!rememberMe);
+    };
+
 //comment
 useEffect(() => {
         const registeredEmail = localStorage.getItem('registeredEmail');
@@ -68,6 +85,13 @@ const handleUserChange = (e) => {
                 setPassword(data.password);
                 dispatch(getEmail(email));
                 localStorage.setItem('loggedInEmail', email);
+                if (rememberMe) {
+                    localStorage.setItem('rememberedUser', email);
+                    localStorage.setItem('rememberedPassword', password);
+                } else {
+                    localStorage.removeItem('rememberedUser');
+                    localStorage.removeItem('rememberedPassword');
+                }
 
                 // Delay navigation to ensure toast message is visible
                 setTimeout(() => {
@@ -127,7 +151,9 @@ const handleUserChange = (e) => {
                     </div>
                 </div>
                 <div className='forgotl'>
-                     <input type='checkbox' /><span>Remember me</span> {/*checked={rememberMe} onChange={handleRememberMeChange}*/}
+                     {/* <input type='checkbox' /><span>Remember me</span> checked={rememberMe} onChange={handleRememberMeChange} */}
+                     <input type='checkbox' checked={rememberMe} onChange={handleRememberMeChange} /><span>Remember me</span>
+
                     <a href='ForgotPassword' className='f'>Forgot Password?</a>
                 </div>
                 <div>
