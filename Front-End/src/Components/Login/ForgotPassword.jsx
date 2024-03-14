@@ -104,8 +104,7 @@ const ForgotPassword = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder='Enter Your Email'
-                        required
-                    /> 
+                        required/> 
                 </div>
                 <MdEmail className='icone'/>
                 <div className='form-groupl'>
@@ -127,7 +126,7 @@ const ForgotPassword = () => {
                         />
                         {showNewPassword ? <MdVisibility className='iconl' onClick={toggleNewPasswordVisibility} /> : <MdVisibilityOff className='iconl' onClick={toggleNewPasswordVisibility} />}
                     </div>
-                    <CiLock className='iconll' />
+                
                 </div>
                 <div className='form-groupl'>
                     <label className='labell'>Confirm Password:</label>
@@ -144,7 +143,7 @@ const ForgotPassword = () => {
                         />
                         {showConfirmPassword ? <MdVisibility className='iconle' onClick={toggleConfirmPasswordVisibility} /> : <MdVisibilityOff className='iconl' onClick={toggleConfirmPasswordVisibility} />}
                     </div>
-                    <CiLock className='iconll' />
+                
                 </div>
                 <div>
                     <button type='submit' className='buttonf'>Reset Password</button>
