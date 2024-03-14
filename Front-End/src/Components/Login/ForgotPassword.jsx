@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import './Login.css';
 import { useHistory } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
-import { CiLock } from "react-icons/ci";
 import moment from 'moment';
 import config from './config';
 
