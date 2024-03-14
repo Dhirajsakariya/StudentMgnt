@@ -20,7 +20,7 @@ builder.Services.AddDbContext<ContactsAPIDbContext>(options =>
 
 
 var app = builder.Build();
-// Enable CORS
+// Enable CORS..
 
 app.UseCors(builder =>
 builder.WithOrigins("http://localhost:3000")
