@@ -180,7 +180,7 @@ button:hover {
   font-size: 18px;
   color: white;
 }
-.buttonf {
+.buttonR {
   width: 50%;
   height: 40px;
   border-radius: 10px;
@@ -190,6 +190,23 @@ button:hover {
   justify-content: center;
   text-align: center;
   margin-left: 80px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+}
+
+.buttonf {
+  width: 50%;
+  height: 40px;
+  border-radius: 10px;
+  outline: auto;
+  border: 1px;
+  background:#146a51;;
+  justify-content: center;
+  text-align: center;
+  margin-left: 90px;
   margin-top: 25px;
   margin-bottom: 15 px;
   font-weight: 700;

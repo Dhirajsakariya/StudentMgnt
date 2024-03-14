@@ -1,12 +1,10 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState } from 'react';
 //import './ForgotPassword.css';
 import './Login.css';
 import { useHistory } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
-import { CiLock } from "react-icons/ci";
 import moment from 'moment';
 import config from './config';
-import {MdEmail, MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -16,14 +14,6 @@ const ForgotPassword = () => {
     const [showNewPassword, setShowNewPassword] = useState(false); 
     const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
     const navigate = useHistory();
-
-    // useEffect(() => {
-    //     const registeredEmail = localStorage.getItem('loggedInEmail');
-    //     if (registeredEmail) {
-    //         setEmail(registeredEmail);
-    //         localStorage.removeItem('loggedInEmail'); // Remove the email after fetching it
-    //     }
-    //  }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,8 +52,6 @@ const ForgotPassword = () => {
                     navigate.push('/') 
                   }, 1500); 
                 localStorage.setItem('registeredEmail', email);
-                //Redirect to login page with email and password state
-                //navigate.push('/', { email, newPassword });
             } 
             else if (result === "Email or BirthDate not Exist") {
                 toast.error('Email or Birthday Not Found!');
@@ -106,7 +94,7 @@ const ForgotPassword = () => {
                         placeholder='Enter Your Email'
                         required/> 
                 </div>
-                <MdEmail className='icone'/>
+                <CgMail className='icone'/>
                 <div className='form-groupl'>
                     <label className='labell'>Birthdate:</label>
                     <input className='inputl' type='date' value={birthday} max={moment().format("YYYY-MM-DD")} onChange={(e) => setBirthday(e.target.value)} required />
@@ -124,7 +112,7 @@ const ForgotPassword = () => {
                             placeholder='Enter New Password' 
                             required 
                         />
-                        {showNewPassword ? <MdVisibility className='iconl' onClick={toggleNewPasswordVisibility} /> : <MdVisibilityOff className='iconl' onClick={toggleNewPasswordVisibility} />}
+                        {showNewPassword ? <IoEyeOutline className='iconl' onClick={toggleNewPasswordVisibility} /> : <IoEyeOffOutline  className='iconl' onClick={toggleNewPasswordVisibility} />}
                     </div>
                 
                 </div>
@@ -141,7 +129,7 @@ const ForgotPassword = () => {
                             placeholder ='Confirm New Password' 
                             required 
                         />
-                        {showConfirmPassword ? <MdVisibility className='iconle' onClick={toggleConfirmPasswordVisibility} /> : <MdVisibilityOff className='iconl' onClick={toggleConfirmPasswordVisibility} />}
+                        {showConfirmPassword ? <IoEyeOutline className='iconle' onClick={toggleConfirmPasswordVisibility} /> : <IoEyeOffOutline className='iconl' onClick={toggleConfirmPasswordVisibility} />}
                     </div>
                 
                 </div>

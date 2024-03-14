@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
 import { MdEmail } from "react-icons/md";
-import {FaRegUserCircle, FaEye,FaEyeSlash} from "react-icons/fa";
+import {FaRegUserCircle} from "react-icons/fa";
 import {  useHistory } from 'react-router-dom';
 import config from './config'
+import { CgMail } from "react-icons/cg";
+import { IoEyeOutline,IoEyeOffOutline } from "react-icons/io5";
 import {toast,Toaster} from 'react-hot-toast';
 import moment from 'moment';
 import './Login.css';
@@ -61,8 +63,6 @@ function Registration(props) {
         console.log(result);
         if (result === "User Created.") 
         {            
-            // Redirect to login page with email and password state
-            //navigate.push('/', { email });
             setTimeout(() => {
                 navigate.push('/') 
               }, 1500);
@@ -103,7 +103,7 @@ const customToastStyle = {
                     <label className='labell'>Email:</label>
                     <input className='inputl' type='email' value={email} onChange={(e)=> setEmail(e.target.value)} placeholder='Email'
                     name='email'  required />
-                    <MdEmail className='iconle' />
+                    <CgMail className='iconle' />
                 </div>
                 <div className='form-groupl'>
                     <label className='labell'>Birthdate:</label>
@@ -119,26 +119,24 @@ const customToastStyle = {
                         autoComplete='current-password'
                         required/>
                         <span className='iconle' onClick={toggle}>
-                        {isVisible  ? <FaEye /> : <FaEyeSlash /> }</span>
+                        {isVisible  ? <IoEyeOutline/> : <IoEyeOffOutline />
+}</span>
                 </div><p className='pass'>{error}</p>
                 <div className='form-groupl'>
                     <label className='labell'>Confirm Password:</label>
                     <input className='inputl' type={!isDisable ? "password" : "text"}
                      name='password' placeholder='Confirm-Password'
                      autoComplete='Confirm-Password'
-                        //pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~\@\!\#\$\%\^\&\*\?]).{8,15}$"
-                        //title="Must contain at least one  number and one uppercase and one lowercase letter and One special Charecter, and at least 8 characters"
                      value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)} required/>
                      <span className='iconle' onClick={toggleBtn}>
-                        {isDisable  ? <FaEye /> : <FaEyeSlash /> }</span>
+                        {isDisable  ? <IoEyeOutline/> : <IoEyeOffOutline /> }</span>
                  </div><p className='pass'>{error}</p>
-                <button className='button' type='submit'>Sign Up</button>
+                <button className='buttonR' type='submit'>Sign Up</button>
              </form>
         </div>
         <Toaster toastOptions={{style: customToastStyle,duration:1500,}} position="top-center" reverseOrder={false} />
         </>
   )
 }
-
 
 export default Registration;
