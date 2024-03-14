@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import './Login.css';
 import { useHistory } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
+import { CgMail } from "react-icons/cg";
+import { IoEyeOutline,IoEyeOffOutline } from "react-icons/io5";
 import moment from 'moment';
 import config from './config';
 
