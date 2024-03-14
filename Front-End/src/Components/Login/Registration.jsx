@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import { MdEmail } from "react-icons/md";
 import {FaRegUserCircle} from "react-icons/fa";
 import {  useHistory } from 'react-router-dom';
 import config from './config'
