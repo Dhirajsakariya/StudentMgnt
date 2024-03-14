@@ -65,40 +65,7 @@ namespace TestCoreApi.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Route("AddFamilyMember/{userId}")]
-        //public async Task<IActionResult> AddFamilyMember(Guid userId, FamilyMemberDto addFamilyMemberDto)
-        //{
-        //    try
-        //    {
-        //        var user = await dbContext.Users.FirstOrDefaultAsync(x => x. Id == userId );
-        //        if (user == null)
-        //        {
-        //            return NotFound("User Not Found!");
-        //        }
-        //        var familyMember = new FamilyMember()
-        //        {
-        //            Id = Guid.NewGuid(),
-        //            FirstName = addFamilyMemberDto.FirstName,
-        //            LastName = addFamilyMemberDto.LastName,
-        //            Gender = addFamilyMemberDto.Gender,
-        //            BirthDate = addFamilyMemberDto.BirthDate,//"birthDate":"2000-02-20"
-        //            Relation = addFamilyMemberDto.Relation,
-        //            UserId = user.Id
-        //        };
-        //        await dbContext.FamilyMembers.AddAsync(familyMember);
-        //        await dbContext.SaveChangesAsync();
-
-        //        familyMember.UserId = user.Id;
-
-        //        return Ok(addFamilyMemberDto);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return StatusCode(500, $"Internal server error: {e.Message}");
-        //    }
-        //}
-
+       
         [HttpPost]
         [Route("AddFamilyMember/{userId}")]
         public async Task<IActionResult> AddFamilyMember(Guid userId, FamilyMemberDto addFamilyMemberDto)
