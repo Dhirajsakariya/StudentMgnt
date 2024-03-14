@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './Components/Login/Login';
@@ -11,8 +12,8 @@ import UpdateUserdetail from './Components/Pages/UpdateUserdetail';
 import Familydetail from './Components/Pages/Familydetail';
 
 function App() {
+
   return (
-   
     <div>
       <Router>
         <Switch>

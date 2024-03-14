@@ -10,8 +10,6 @@ import Swal from 'sweetalert2';
 
 const Familydetail = () => {
 
-  //const [email, setEmail] = useState('');
-  //const [userId,setUserId]=useState('');
   const [userData, setUserData] = useState({id:'',email:''});
   const [editing, setEditing] = useState(false);
 
@@ -31,13 +29,6 @@ const Familydetail = () => {
   const [relationError, setRelationError] = useState('');
 
   const relations=[ "Father", "Mother", "Brother", "Sister", "GrandMother", "GrandFather", "Uncle", "Aunty", "Cousin" ];
-
-//   useEffect(() => {
-//     const registeredEmail = localStorage.getItem('loggedInEmail');
-//     if (registeredEmail) {
-//         setUserData({email:userData.email});
-//     }
-//  }, []);
 
  useEffect(() => {
   const storedUserDetails = JSON.parse(localStorage.getItem('loggedEmail'));
@@ -68,10 +59,6 @@ const Familydetail = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  //   if (!formData.firstName || !formData.lastName || !formData.gender || !formData.birthDate || !formData.relation) {
-  //     toast.error('All fields are required!');
-  //     return;
-  // }
     if(!formData.firstName)
     {
       setFirstNameError('Please Enter a FirstName');
@@ -122,7 +109,6 @@ const Familydetail = () => {
           })
         });
       } else {
-        //familyMember.UserId = userData.id;
         response = await fetch(`${config.ApiUrl}FamilyMember/AddFamilyMember/${userData.id}`, {
           method: 'POST',
           headers: {
@@ -164,9 +150,7 @@ const Familydetail = () => {
           birthDate: '',
           relation: '',
         });
-       } //else {
-      //   toast.error(editing ? "Editing Failed!" : "Adding Failed!");
-      //  }
+       }
   
     } catch (error) {
       toast.error(error.message || (editing ? 'Failed to edit family member' : 'Failed to add family member'));

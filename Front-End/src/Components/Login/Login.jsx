@@ -5,18 +5,14 @@ import { useHistory,useLocation } from 'react-router-dom';
 import { IoEyeOutline,IoEyeOffOutline } from "react-icons/io5";
 import { CgMail } from "react-icons/cg";
 import { toast, Toaster } from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
-import { getEmail} from './actions';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false); 
     const [id, setId] = useState();
-    const dispatch = useDispatch();
-    const location=useLocation();
     const navigate = useHistory();
-    const [rememberMe, setRememberMe] = useState(false); // Add rememberMe state
+    const [rememberMe, setRememberMe] = useState(false); 
 
     useEffect(() => {
         const storedUser = localStorage.getItem('rememberedUser');
@@ -24,7 +20,7 @@ const Login = () => {
         if (storedUser && storedPassword) {
             setEmail(storedUser);
             setPassword(storedPassword);
-            setRememberMe(true); // Set rememberMe state when rememberedUser and rememberedPassword are found
+            setRememberMe(true); 
         }
     }, []);
 
@@ -46,7 +42,6 @@ const Login = () => {
                 if (response.ok) {
                     const userData = await response.json();
                     setId(userData.id);
-                    //setBirthday(userData.birthday);
                 } 
         };
         if(email)
@@ -81,7 +76,6 @@ const handleUserChange = (e) => {
 
                 const data = await response.json();
                 setPassword(data.password);
-                dispatch(getEmail(email));
                 localStorage.setItem('loggedInEmail', email);
                 if (rememberMe) {
                     localStorage.setItem('rememberedUser', email);
@@ -91,7 +85,6 @@ const handleUserChange = (e) => {
                     localStorage.removeItem('rememberedPassword');
                 }
 
-                // Delay navigation to ensure toast message is visible
                 setTimeout(() => {
                     navigate.push('/UpdateUserDetail'); 
                 }, 1500); 
@@ -149,7 +142,6 @@ const handleUserChange = (e) => {
                     </div>
                 </div>
                 <div className='forgotl'>
-                     {/* <input type='checkbox' /><span>Remember me</span> checked={rememberMe} onChange={handleRememberMeChange} */}
                      <input type='checkbox' checked={rememberMe} onChange={handleRememberMeChange} /><span>Remember me</span>
 
                     <a href='ForgotPassword' className='f'>Forgot Password?</a>
@@ -167,69 +159,3 @@ const handleUserChange = (e) => {
 };
 
 export default Login;
-
-//    //const [rememberMe, setRememberMe] = useState(false);
-
-    // const handleRememberMeChange = () => {
-    //     setRememberMe(!rememberMe);
-    // };
-
-
-//setEmail(data.email);
-                
-                // if (rememberMe) {
-                //     // Store email and password in local storage
-                //     localStorage.setItem('recentlyRegisteredEmail', data.email);
-                //     localStorage.setItem('recentlyRegisteredPassword', data.password);
-                // }
-                
-
-// useEffect(() => {
-    //     const storedUser = localStorage.getItem('rememberedUser');
-    //     const storedPassword = localStorage.getItem('loginPassword');
-    //     if (storedUser && storedPassword) {
-    //         setEmail(storedUser);
-    //         setPassword(storedPassword);
-    //         setRememberMe(true);
-    //     }
-    // }, []);
-    //const [recentlyLoggedInEmail, setRecentlyLoggedInEmail] = useState('');
-//const [recentlyLoggedInPassword, setRecentlyLoggedInPassword] = useState('');
-
-// useEffect(() => {
-//     const fetchRecentlyLoggedInUserData = async () => {
-//         try {
-//             //if (!email) return; // Check if email is defined
-//             const response = await fetch(`${config.ApiUrl}User/RecentlyLoggedInUserData`);
-//             if (response.ok) {
-//                 const data = await response.json();
-//                 setEmail(data.email);
-//                 setPassword(data.password);
-//             } else {
-//                 throw new Error('Failed to fetch recently logged-in user data'); 
-//             }
-//         } catch (error) {
-//             console.error('Error fetching recently logged-in user data:', error);
-//             toast.error('Failed to fetch recently logged-in user data');
-//         }
-//     };
-//     fetchRecentlyLoggedInUserData();
-// }, []); // Add email as a dependency
-
- // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const storedPassword = localStorage.getItem('loginPassword');
-    //     if (user === 'Admin@gmail.com' && password === storedPassword) {
-    //         toast.success("Login Successfully!")
-    //         if (rememberMe) {
-    //             localStorage.setItem('rememberedUser', user);
-    //             localStorage.setItem('rememberedPassword', password);
-    //         } else {
-    //             localStorage.removeItem('rememberedUser');
-    //             localStorage.removeItem('rememberedPassword');
-    //         }
-            
-    //     }
-    //     else {
-    //         toast.error("Invalid email or password!");
-    //     }

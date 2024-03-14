@@ -17,14 +17,10 @@ const UpdateUserdetail = () => {
     const [mobileNumber, setMobileNumber] = useState('');
     const [isValidPhone, setIsValidPhone] = useState(false);
 
-    // const location = useLocation();
-    // const email = location.state?.email || "";
-
     useEffect(() => {
       const registeredEmail = localStorage.getItem('loggedInEmail');
       if (registeredEmail) {
           setEmail(registeredEmail);
-          //localStorage.removeItem('loggedInEmail'); // Remove the email after fetching it
       }
    }, []);
     const navigate = useHistory();
@@ -121,7 +117,6 @@ const handleNameChange =async (e) => {
                    <p>{email}</p>
                      <label>Name:</label>
                      <input type='text' value={name} onChange={handleNameChange}/>
-                     {/* Name: {userName} */}
                    </div>
                    <div className='form-groupa'>
                      <label>Gender:</label>
