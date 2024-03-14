@@ -63,8 +63,6 @@ function Registration(props) {
         console.log(result);
         if (result === "User Created.") 
         {            
-            // Redirect to login page with email and password state
-            //navigate.push('/', { email });
             setTimeout(() => {
                 navigate.push('/') 
               }, 1500);
@@ -129,8 +127,6 @@ const customToastStyle = {
                     <input className='inputl' type={!isDisable ? "password" : "text"}
                      name='password' placeholder='Confirm-Password'
                      autoComplete='Confirm-Password'
-                        //pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~\@\!\#\$\%\^\&\*\?]).{8,15}$"
-                        //title="Must contain at least one  number and one uppercase and one lowercase letter and One special Charecter, and at least 8 characters"
                      value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)} required/>
                      <span className='iconle' onClick={toggleBtn}>
                         {isDisable  ? <IoEyeOutline/> : <IoEyeOffOutline /> }</span>
@@ -142,6 +138,5 @@ const customToastStyle = {
         </>
   )
 }
-
 
 export default Registration;

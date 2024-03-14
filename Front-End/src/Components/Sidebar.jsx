@@ -42,11 +42,6 @@ const Sidebar = ({children}) => {
             icon:<RiDatabase2Line />
 
         },
-        // {
-        //     path:"/DisplayCategory",
-        //     name:"DisplayCategory",
-        //     icon:<FaDatabase />
-        // },
         {
             path:"/login",
             name:"Logout",
