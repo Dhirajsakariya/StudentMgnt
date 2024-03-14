@@ -54,9 +54,10 @@ const Familydetail = () => {
                   console.log('Failed to fetch family members');
               }
               const data = await response.json();
-              console.log(data);
+              //console.log(data);
               //setUserData(data[0]?.userId); //Assuming the userId is available in first data
               setFamilyMembers(data);
+              //setUserData(data);
           } catch (error) {
               console.error('Error fetching family members:', error);
           }
