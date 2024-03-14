@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Login.css';
 import config from './config'; 
-import { useHistory } from 'react-router-dom';
-import { MdEmail, MdVisibility, MdVisibilityOff } from "react-icons/md"; 
+import { useHistory,useLocation } from 'react-router-dom';
+import { IoEyeOutline,IoEyeOffOutline } from "react-icons/io5";
+import { CgMail } from "react-icons/cg";
 import { toast, Toaster } from 'react-hot-toast';
 
 const Login = () => {
@@ -27,7 +28,7 @@ const Login = () => {
         setRememberMe(!rememberMe);
     };
 
-useEffect(() => {
+   useEffect(() => {
         const registeredEmail = localStorage.getItem('registeredEmail');
         if (registeredEmail) {
             setEmail(registeredEmail);
