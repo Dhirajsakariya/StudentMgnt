@@ -39,11 +39,6 @@ const Sidebar = ({children}) => {
             name:"JsonData",
             icon:<FaDatabase />
         },
-        // {
-        //     path:"/DisplayCategory",
-        //     name:"DisplayCategory",
-        //     icon:<FaDatabase />
-        // },
         {
             path:"/login",
             name:"Logout",

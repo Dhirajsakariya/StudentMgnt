@@ -1,9 +1,8 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState } from 'react';
 //import './ForgotPassword.css';
 import './Login.css';
 import { useHistory } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
-import { CiLock } from "react-icons/ci";
 import moment from 'moment';
 import config from './config';
 import {MdEmail, MdVisibility, MdVisibilityOff } from "react-icons/md";
@@ -16,14 +15,6 @@ const ForgotPassword = () => {
     const [showNewPassword, setShowNewPassword] = useState(false); 
     const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
     const navigate = useHistory();
-
-    // useEffect(() => {
-    //     const registeredEmail = localStorage.getItem('loggedInEmail');
-    //     if (registeredEmail) {
-    //         setEmail(registeredEmail);
-    //         localStorage.removeItem('loggedInEmail'); // Remove the email after fetching it
-    //     }
-    //  }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,8 +53,6 @@ const ForgotPassword = () => {
                     navigate.push('/') 
                   }, 1500); 
                 localStorage.setItem('registeredEmail', email);
-                //Redirect to login page with email and password state
-                //navigate.push('/', { email, newPassword });
             } 
             else if (result === "Email or BirthDate not Exist") {
                 toast.error('Email or Birthday Not Found!');

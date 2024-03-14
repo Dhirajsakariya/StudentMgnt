@@ -6,14 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
-//import emailReducer from '.././src/Components/Login/actions';
-
 import userReducer  from '../src/Components/Pages/Users'
 
 const store = configureStore ({
   reducer : {
     users : userReducer,
-    //email: emailReducer
   },
 });
 
