@@ -18,6 +18,7 @@ const Login = () => {
     const navigate = useHistory();
     const [rememberMe, setRememberMe] = useState(false); // Add rememberMe state
 
+    //remember me
     useEffect(() => {
         const storedUser = localStorage.getItem('rememberedUser');
         const storedPassword = localStorage.getItem('rememberedPassword');
