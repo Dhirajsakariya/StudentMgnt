@@ -66,7 +66,7 @@ const handleSubmit = async (e) => {
         toast.error('Please Select a Gender!');
         return;
        }
-       if(!updateUserData.mobileNumber)
+       else if(!updateUserData.mobileNumber)
        {
         toast.error('Please Enter a MobileNumber');
        }
@@ -87,9 +87,8 @@ const handleSubmit = async (e) => {
           
           setName(updateUserData.name);
           toast.success("User details updated successfully!");
-      } else {
-          
-      }
+      } 
+      
   } catch {
       toast.error('Failed to update user details');
   }

@@ -23,9 +23,11 @@ const Familydetail = () => {
     birthDate: '',
     relation: '',
   });
-
+  const[firstNameError,setFirstNameError] =useState();
+  const[lastNameError,setLastNameError] = useState();
   const [familyMembers, setFamilyMembers] = useState([]);
   const [genderError, setGenderError] = useState('');
+  const [birthDateError,setBirthadayError] =useState('');
   const [relationError, setRelationError] = useState('');
 
   const relations=[ "Father", "Mother", "Brother", "Sister", "GrandMother", "GrandFather", "Uncle", "Aunty", "Cousin" ];
@@ -66,19 +68,30 @@ const Familydetail = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.firstName || !formData.lastName || !formData.gender || !formData.birthDate || !formData.relation) {
-      toast.error('All fields are required!');
-      return;
-  }
-
-    if (!formData.gender) {
+  //   if (!formData.firstName || !formData.lastName || !formData.gender || !formData.birthDate || !formData.relation) {
+  //     toast.error('All fields are required!');
+  //     return;
+  // }
+    if(!formData.firstName)
+    {
+      setFirstNameError('Please Enter a FirstName');
+    }
+    else if(!formData.lastName)
+    {
+      setLastNameError('Please Enter a LastName');
+    }
+    else if (!formData.gender) {
       setGenderError('Please select a gender');
       return;
     }
-    if (!formData.relation) {
+    else if(!formData.birthDate){
+      setBirthadayError('Please Select a Birthdate');
+    }
+    else if (!formData.relation) {
       setRelationError('Please select a Relation');
       return;
     }
+    
     try {
       const familyMember = {
         Id:formData.id,
@@ -136,7 +149,7 @@ const Familydetail = () => {
           setFamilyMembers(updatedFamilyMembers); // Update the state with the edited member
           toast.success("Edited Successfully!");
           setEditing(false); // Exit editing mode
-        } else if(familyMembers.length <= 5){
+        } else if(familyMembers.length <= 8){
           setFamilyMembers([...familyMembers, result]); // Fetch updated data after adding
           toast.success("Added Successfully!");
         }
@@ -151,9 +164,9 @@ const Familydetail = () => {
           birthDate: '',
           relation: '',
         });
-      } else {
-        toast.error(editing ? "Editing Failed!" : "Adding Failed!");
-      }
+       } //else {
+      //   toast.error(editing ? "Editing Failed!" : "Adding Failed!");
+      //  }
   
     } catch (error) {
       toast.error(error.message || (editing ? 'Failed to edit family member' : 'Failed to add family member'));
@@ -219,9 +232,11 @@ const customToastStyle = {
                 type="text"
                 value={formData.firstName}
                 placeholder='First Name'
-                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                onChange={(e) => {setFormData({ ...formData, firstName: e.target.value });
+                          setFirstNameError('');} }
                 required
               />
+              {firstNameError  && <p style={{ color: 'red'}}>{firstNameError}</p>}
             </div>
             <div className='form-groupf'>
               <label>Last Name:</label>
@@ -229,9 +244,11 @@ const customToastStyle = {
                 type='text'
                 value={formData.lastName}
                 placeholder='Last Name'
-                onChange={(e)=>setFormData({ ...formData, lastName: e.target.value })}
+                onChange={(e)=>{setFormData({ ...formData, lastName: e.target.value });
+                  setLastNameError('');}}
                 required
               />
+              {lastNameError  && <p style={{ color: 'red'}}>{lastNameError}</p>}
             </div>
             <div className='form-groupf'>
               <label>Gender:</label>
@@ -259,7 +276,7 @@ const customToastStyle = {
                 />
                 <label>Female</label>
               </div>
-              {genderError && <p style={{color: 'red'}}>{ }</p>}
+              {genderError && <p style={{color: 'red'}}>{genderError}</p>}
             </div>
             <div className="form-groupf">
               <label>Date of Birth:</label>
@@ -267,9 +284,11 @@ const customToastStyle = {
                 type="date"
                 value={formData.birthDate}
                 max={moment().format("YYYY-MM-DD")}
-                onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
+                onChange={(e) => {setFormData({ ...formData, birthDate: e.target.value });
+                     setBirthadayError('');}}
                 required
               />
+              {birthDateError && <p style={{color: 'red'}}>{birthDateError}</p>}
             </div>
             <div className="form-groupf">
               <label>Relation:</label>
