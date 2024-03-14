@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Login.css';
 import config from './config'; 
-import { useHistory,useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { IoEyeOutline,IoEyeOffOutline } from "react-icons/io5";
 import { CgMail } from "react-icons/cg";
 import { toast, Toaster } from 'react-hot-toast';

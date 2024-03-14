@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import { MdEmail } from "react-icons/md";
 import {FaRegUserCircle} from "react-icons/fa";
 import {  useHistory } from 'react-router-dom';
 import config from './config'
@@ -38,6 +37,12 @@ function Registration(props) {
     const emailRegex = /^\S+@\S+\.\S+$/;
     if (!emailRegex.test(email)) {
         toast.error('Please enter a valid email address!');
+        return;
+    }
+const selectedDate = moment(birthday);
+    const currentDate = moment();
+    if (selectedDate.isAfter(currentDate)) {
+        toast.error('Birthdate cannot be a future date!');
         return;
     }
     if (password !== confirmPassword) {
@@ -81,6 +86,7 @@ function Registration(props) {
         toast.error('Signup failed. Please try again later.');
     }
 };
+
 
 const customToastStyle = {
     fontFamily: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif",

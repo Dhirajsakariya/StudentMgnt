@@ -51,6 +51,14 @@ const handleSubmit = async (e) => {
         BirthDate: birthday,
         mobileNumber: mobileNumber
       };
+
+const selectedDate = moment(birthday);
+const currentDate = moment();
+if (selectedDate.isAfter(currentDate)) {
+  toast.error('Birthdate cannot be a future date!');
+  return;
+}
+
       const response = await fetch(`${config.ApiUrl}User/UpdateUser/${email}`, {
           method: 'PUT',
           headers: {
@@ -89,6 +97,8 @@ const handleSubmit = async (e) => {
       toast.error('Failed to update user details');
   }
 };
+
+
 
 const handleNameChange =async (e) => {
   const newName = e.target.value;
