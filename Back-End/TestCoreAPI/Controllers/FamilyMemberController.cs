@@ -90,6 +90,7 @@ namespace TestCoreApi.Controllers
                 await dbContext.SaveChangesAsync();
 
                 familyMember.UserId = user.Id;
+                addFamilyMemberDto.Id = familyMember.Id;
 
                 return Ok(addFamilyMemberDto);
             }
