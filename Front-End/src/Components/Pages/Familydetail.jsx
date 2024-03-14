@@ -72,7 +72,14 @@ const Familydetail = () => {
   //     toast.error('All fields are required!');
   //     return;
   // }
-    if(!formData.firstName)
+   // Check if birthdate is in the future
+   const enteredBirthDate = moment(formData.birthDate);
+   const currentDate = moment();
+   if (enteredBirthDate.isAfter(currentDate)) {
+     toast.error('Birthdate cannot be a future date!');
+     return;
+   }
+    else if(!formData.firstName)
     {
       setFirstNameError('Please Enter a FirstName');
     }
@@ -121,7 +128,8 @@ const Familydetail = () => {
             //UserId: userData.id
           })
         });
-      } else {
+      } 
+      else {
         //familyMember.UserId = userData.id;
         response = await fetch(`${config.ApiUrl}FamilyMember/AddFamilyMember/${userData.id}`, {
           method: 'POST',
@@ -149,10 +157,13 @@ const Familydetail = () => {
           setFamilyMembers(updatedFamilyMembers); // Update the state with the edited member
           toast.success("Edited Successfully!");
           setEditing(false); // Exit editing mode
-        } else if(familyMembers.length <= 8){
+        } 
+         
+        else if(familyMembers.length <= 8){
           setFamilyMembers([...familyMembers, result]); // Fetch updated data after adding
           toast.success("Added Successfully!");
         }
+       
         else{
           toast.error("Sorry,the maximun number of members has been reached.");
         }
