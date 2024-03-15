@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
 
 const Familydetail = () => {
 
+  //const [email, setEmail] = useState('');
+  //const [userId,setUserId]=useState('');
   const [userData, setUserData] = useState({id:'',email:''});
   const [editing, setEditing] = useState(false);
 
@@ -29,6 +31,13 @@ const Familydetail = () => {
   const [relationError, setRelationError] = useState('');
 
   const relations=[ "Father", "Mother", "Brother", "Sister", "GrandMother", "GrandFather", "Uncle", "Aunty", "Cousin" ];
+
+//   useEffect(() => {
+//     const registeredEmail = localStorage.getItem('loggedInEmail');
+//     if (registeredEmail) {
+//         setUserData({email:userData.email});
+//     }
+//  }, []);
 
  useEffect(() => {
   const storedUserDetails = JSON.parse(localStorage.getItem('loggedEmail'));
@@ -63,14 +72,7 @@ const Familydetail = () => {
   //     toast.error('All fields are required!');
   //     return;
   // }
-   // Check if birthdate is in the future
-   const enteredBirthDate = moment(formData.birthDate);
-   const currentDate = moment();
-   if (enteredBirthDate.isAfter(currentDate)) {
-     toast.error('Birthdate cannot be a future date!');
-     return;
-   }
-    else if(!formData.firstName)
+    if(!formData.firstName)
     {
       setFirstNameError('Please Enter a FirstName');
     }
@@ -147,13 +149,10 @@ const Familydetail = () => {
           setFamilyMembers(updatedFamilyMembers); // Update the state with the edited member
           toast.success("Edited Successfully!");
           setEditing(false); // Exit editing mode
-        } 
-         
-        else if(familyMembers.length <= 8){
+        } else if(familyMembers.length <= 8){
           setFamilyMembers([...familyMembers, result]); // Fetch updated data after adding
           toast.success("Added Successfully!");
         }
-       
         else{
           toast.error("Sorry,the maximun number of members has been reached.");
         }
@@ -165,7 +164,9 @@ const Familydetail = () => {
           birthDate: '',
           relation: '',
         });
-       }
+       } //else {
+      //   toast.error(editing ? "Editing Failed!" : "Adding Failed!");
+      //  }
   
     } catch (error) {
       toast.error(error.message || (editing ? 'Failed to edit family member' : 'Failed to add family member'));

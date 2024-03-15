@@ -17,10 +17,14 @@ const UpdateUserdetail = () => {
     const [mobileNumber, setMobileNumber] = useState('');
     const [isValidPhone, setIsValidPhone] = useState(false);
 
+    // const location = useLocation();
+    // const email = location.state?.email || "";
+
     useEffect(() => {
       const registeredEmail = localStorage.getItem('loggedInEmail');
       if (registeredEmail) {
           setEmail(registeredEmail);
+          //localStorage.removeItem('loggedInEmail'); // Remove the email after fetching it
       }
    }, []);
     const navigate = useHistory();
@@ -51,14 +55,6 @@ const handleSubmit = async (e) => {
         BirthDate: birthday,
         mobileNumber: mobileNumber
       };
-
-const selectedDate = moment(birthday);
-const currentDate = moment();
-if (selectedDate.isAfter(currentDate)) {
-  toast.error('Birthdate cannot be a future date!');
-  return;
-}
-
       const response = await fetch(`${config.ApiUrl}User/UpdateUser/${email}`, {
           method: 'PUT',
           headers: {
@@ -98,8 +94,6 @@ if (selectedDate.isAfter(currentDate)) {
   }
 };
 
-
-
 const handleNameChange =async (e) => {
   const newName = e.target.value;
   setName(newName); 
@@ -127,6 +121,7 @@ const handleNameChange =async (e) => {
                    <p>{email}</p>
                      <label>Name:</label>
                      <input type='text' value={name} onChange={handleNameChange}/>
+                     {/* Name: {userName} */}
                    </div>
                    <div className='form-groupa'>
                      <label>Gender:</label>
