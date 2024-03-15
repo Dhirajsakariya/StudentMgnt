@@ -69,12 +69,6 @@ namespace TestCoreApi.Controllers
             var existingUser = await dbContext.Users.Where(u => u.Email == addUserDto.Email).FirstOrDefaultAsync();
             if (existingUser == null)
             {
-                //Validate Birthdate
-                var currentDate = DateOnly.FromDateTime(DateTime.UtcNow.Date);
-                if(addUserDto.BirthDate > currentDate)
-                {
-                    return BadRequest("BirthDate cannot be a future date.");
-                }
                 var user = new User()
                 {
                     Id = Guid.NewGuid(),
@@ -89,7 +83,6 @@ namespace TestCoreApi.Controllers
                 return Ok("User Created.");
             }
             return Ok("User Already Registered!");
-            //return Conflict("User with this email already exists"); // Return conflict status if user already exists
         }
 
         [HttpPut]
@@ -103,12 +96,7 @@ namespace TestCoreApi.Controllers
                 {
                     return NotFound();
                 }
-                //Validate Birthdate
-                var currentDate = DateOnly.FromDateTime(DateTime.UtcNow.Date);
-                if (updateUserData.BirthDate > currentDate)
-                {
-                    return BadRequest("BirthDate cannot be a future date.");
-                }
+               
                 user.Name = updateUserData.Name;
                 user.Gender = updateUserData.Gender;
                 user.BirthDate = updateUserData.BirthDate;
