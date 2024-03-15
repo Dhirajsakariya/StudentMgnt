@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import './Sidebar.css'
-import { FaBars ,FaDatabase,FaUserEdit,FaUserCheck} from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
+import { RiDatabase2Line } from "react-icons/ri";
+import { BiSolidUserDetail, BiLogOut } from "react-icons/bi";
 import { MdFamilyRestroom } from "react-icons/md";
-import { CiLogout } from "react-icons/ci";
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import user from './Assets/user.jpg'
@@ -19,19 +20,11 @@ const Sidebar = ({children}) => {
     const navigate = useHistory();
     const menuItem=[
 
-<<<<<<< HEAD
-        {
-=======
          {
->>>>>>> 18907fb0694379c75cbf85e925b0aad61dd8ff33
             path:"/UpdateUserdetail",
-            name:"UpdateUser",
-            icon:<FaUserEdit/>
-        },
-        {
-            path:"/Userdetail",
-            name:"Userdetail",
-            icon:<FaUserCheck />
+            name:"User Detail",
+            icon:<BiSolidUserDetail />
+
         },
         {
             path:"/Familydetail",
@@ -40,18 +33,15 @@ const Sidebar = ({children}) => {
         },
         {
             path:"/JsonData",
-            name:"JsonData",
-            icon:<FaDatabase />
+            name:"Json Data",
+            icon:<RiDatabase2Line />
+
         },
-        // {
-        //     path:"/DisplayCategory",
-        //     name:"DisplayCategory",
-        //     icon:<FaDatabase />
-        // },
         {
             path:"/login",
             name:"Logout",
-            icon:<CiLogout />
+            icon:<BiLogOut />
+
         }
 
     ];
