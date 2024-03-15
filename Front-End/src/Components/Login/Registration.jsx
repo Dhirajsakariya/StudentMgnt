@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
 import { MdEmail } from "react-icons/md";
-import {FaRegUserCircle, FaEye,FaEyeSlash} from "react-icons/fa";
+import {FaRegUserCircle} from "react-icons/fa";
 import {  useHistory } from 'react-router-dom';
+import { IoEyeOffOutline,IoEyeOutline} from "react-icons/io5";
+import { CgMail } from "react-icons/cg";
 import config from './config'
 import {toast,Toaster} from 'react-hot-toast';
 import moment from 'moment';
@@ -103,7 +105,7 @@ const customToastStyle = {
                     <label className='labell'>Email:</label>
                     <input className='inputl' type='email' value={email} onChange={(e)=> setEmail(e.target.value)} placeholder='Email'
                     name='email'  required />
-                    <MdEmail className='iconle' />
+                    <CgMail className='iconle' />
                 </div>
                 <div className='form-groupl'>
                     <label className='labell'>Birthdate:</label>
@@ -131,7 +133,7 @@ const customToastStyle = {
                         //title="Must contain at least one  number and one uppercase and one lowercase letter and One special Charecter, and at least 8 characters"
                      value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)} required/>
                      <span className='iconle' onClick={toggleBtn}>
-                        {isDisable  ? <FaEye /> : <FaEyeSlash /> }</span>
+                        {isDisable  ?  <IoEyeOutline/> :<IoEyeOffOutline /> }</span>
                  </div><p className='pass'>{error}</p>
                 <button className='button' type='submit'>Sign Up</button>
              </form>
