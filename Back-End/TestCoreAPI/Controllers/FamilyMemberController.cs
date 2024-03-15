@@ -78,14 +78,6 @@ namespace TestCoreApi.Controllers
                     return NotFound("User Not Found!");
                 }
 
-                // Validate BirthDate
-                var currentDate = DateOnly.FromDateTime(DateTime.UtcNow.Date);
-                if (addFamilyMemberDto.BirthDate > currentDate)
-                {
-                    return BadRequest("BirthDate cannot be a future date.");
-                  
-                }
-
                 var familyMember = new FamilyMember()
                 {
                     Id = Guid.NewGuid(),
@@ -101,7 +93,6 @@ namespace TestCoreApi.Controllers
                 await dbContext.SaveChangesAsync();
 
                 familyMember.UserId = user.Id;
-                //this line 
                 addFamilyMemberDto.Id = familyMember.Id;
 
                 return Ok(addFamilyMemberDto);
@@ -125,25 +116,13 @@ namespace TestCoreApi.Controllers
                     return NotFound();
                 }
 
-                // Validate BirthDate
-                var currentDate = DateOnly.FromDateTime(DateTime.UtcNow.Date);
-                if (updateFamilyMemberDto.BirthDate > currentDate)
-                {
-                    return BadRequest("BirthDate cannot be a future date.");
-                }
-
-                //fm.Id = updateFamilyMember.Id;
                 familyMember.FirstName = updateFamilyMemberDto.FirstName;
                 familyMember.LastName = updateFamilyMemberDto.LastName;
                 familyMember.Gender = updateFamilyMemberDto.Gender;
                 familyMember.BirthDate = updateFamilyMemberDto.BirthDate;
                 familyMember.Relation = updateFamilyMemberDto.Relation;
-                //familyMember.UserId = updateFamilyMemberDto.Id;
 
                 await dbContext.SaveChangesAsync();
-
-                //updateFamilyMemberDto.UserId = user.Id;
-
                 return Ok(familyMember);
             }
             catch (Exception e)
