@@ -39,6 +39,12 @@ function Registration(props) {
         toast.error('Please enter a valid email address!');
         return;
     }
+const selectedDate = moment(birthday);
+    const currentDate = moment();
+    if (selectedDate.isAfter(currentDate)) {
+        toast.error('Birthdate cannot be a future date!');
+        return;
+    }
     if (password !== confirmPassword) {
         toast.error('Passwords do not match!');
         return;
@@ -80,6 +86,7 @@ function Registration(props) {
         toast.error('Signup failed. Please try again later.');
     }
 };
+
 
 const customToastStyle = {
     fontFamily: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif",

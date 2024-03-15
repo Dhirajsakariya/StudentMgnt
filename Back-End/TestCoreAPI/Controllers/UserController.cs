@@ -69,6 +69,12 @@ namespace TestCoreApi.Controllers
             var existingUser = await dbContext.Users.Where(u => u.Email == addUserDto.Email).FirstOrDefaultAsync();
             if (existingUser == null)
             {
+                // Validate BirthDate
+                var currentDate = DateOnly.FromDateTime(DateTime.UtcNow.Date);
+                if (addUserDto.BirthDate > currentDate)
+                {
+                    return BadRequest("BirthDate cannot be a future date.");
+                }
                 var user = new User()
                 {
                     Id = Guid.NewGuid(),
@@ -96,6 +102,12 @@ namespace TestCoreApi.Controllers
                 if (user == null)
                 {
                     return NotFound();
+                }
+                // Validate BirthDate
+                var currentDate = DateOnly.FromDateTime(DateTime.UtcNow.Date);
+                if (updateUserData.BirthDate > currentDate)
+                {
+                    return BadRequest("BirthDate cannot be a future date.");
                 }
                 user.Name = updateUserData.Name;
                 user.Gender = updateUserData.Gender;
