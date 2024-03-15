@@ -8,7 +8,7 @@ import config from '../Login/config';
 const JsonData = () => {
   const [data, setData] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectCategory,setSelectedCategory] = useState('');
   const [categoryCounts, setCategoryCounts] = useState({});
   
   const history = useHistory();

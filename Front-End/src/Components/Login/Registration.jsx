@@ -39,7 +39,7 @@ function Registration(props) {
         return;
     }
     if (password !== confirmPassword) {
-        toast.error('Passwords do not match!');
+        toast.error('Password does not match!');
         return;
     }
     try {
@@ -119,7 +119,8 @@ const customToastStyle = {
                         autoComplete='current-password'
                         required/>
                         <span className='iconle' onClick={toggle}>
-                        {isVisible  ? <FaEye /> : <FaEyeSlash /> }</span>
+                        {isVisible  ? <IoEyeOutline/> : <IoEyeOffOutline />
+                        }</span>
                 </div><p className='pass'>{error}</p>
                 <div className='form-groupl'>
                     <label className='labell'>Confirm Password:</label>
