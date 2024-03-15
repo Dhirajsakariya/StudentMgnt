@@ -1,9 +1,8 @@
 import React,{useState} from 'react'
-import {FaRegUserCircle} from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import {FaRegUserCircle, FaEye,FaEyeSlash} from "react-icons/fa";
 import {  useHistory } from 'react-router-dom';
 import config from './config'
-import { CgMail } from "react-icons/cg";
-import { IoEyeOutline,IoEyeOffOutline } from "react-icons/io5";
 import {toast,Toaster} from 'react-hot-toast';
 import moment from 'moment';
 import './Login.css';
@@ -39,12 +38,6 @@ function Registration(props) {
         toast.error('Please enter a valid email address!');
         return;
     }
-const selectedDate = moment(birthday);
-    const currentDate = moment();
-    if (selectedDate.isAfter(currentDate)) {
-        toast.error('Birthdate cannot be a future date!');
-        return;
-    }
     if (password !== confirmPassword) {
         toast.error('Passwords do not match!');
         return;
@@ -68,6 +61,8 @@ const selectedDate = moment(birthday);
         console.log(result);
         if (result === "User Created.") 
         {            
+            // Redirect to login page with email and password state
+            //navigate.push('/', { email });
             setTimeout(() => {
                 navigate.push('/') 
               }, 1500);
@@ -86,7 +81,6 @@ const selectedDate = moment(birthday);
         toast.error('Signup failed. Please try again later.');
     }
 };
-
 
 const customToastStyle = {
     fontFamily: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif",
@@ -109,7 +103,7 @@ const customToastStyle = {
                     <label className='labell'>Email:</label>
                     <input className='inputl' type='email' value={email} onChange={(e)=> setEmail(e.target.value)} placeholder='Email'
                     name='email'  required />
-                    <CgMail className='iconle' />
+                    <MdEmail className='iconle' />
                 </div>
                 <div className='form-groupl'>
                     <label className='labell'>Birthdate:</label>
@@ -125,24 +119,26 @@ const customToastStyle = {
                         autoComplete='current-password'
                         required/>
                         <span className='iconle' onClick={toggle}>
-                        {isVisible  ? <IoEyeOutline/> : <IoEyeOffOutline />
-}</span>
+                        {isVisible  ? <FaEye /> : <FaEyeSlash /> }</span>
                 </div><p className='pass'>{error}</p>
                 <div className='form-groupl'>
                     <label className='labell'>Confirm Password:</label>
                     <input className='inputl' type={!isDisable ? "password" : "text"}
                      name='password' placeholder='Confirm-Password'
                      autoComplete='Confirm-Password'
+                        //pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~\@\!\#\$\%\^\&\*\?]).{8,15}$"
+                        //title="Must contain at least one  number and one uppercase and one lowercase letter and One special Charecter, and at least 8 characters"
                      value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)} required/>
                      <span className='iconle' onClick={toggleBtn}>
-                        {isDisable  ? <IoEyeOutline/> : <IoEyeOffOutline /> }</span>
+                        {isDisable  ? <FaEye /> : <FaEyeSlash /> }</span>
                  </div><p className='pass'>{error}</p>
-                <button className='buttonR' type='submit'>Sign Up</button>
+                <button className='button' type='submit'>Sign Up</button>
              </form>
         </div>
         <Toaster toastOptions={{style: customToastStyle,duration:1500,}} position="top-center" reverseOrder={false} />
         </>
   )
 }
+
 
 export default Registration;

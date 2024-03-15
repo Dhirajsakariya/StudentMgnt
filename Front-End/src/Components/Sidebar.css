@@ -100,6 +100,8 @@ a{
   overflow: hidden;
   max-height: 0;
 }
+/*
+overflow: hidden;*/
 .dropdown-menu:hover{
   max-height: 400px;
 }
