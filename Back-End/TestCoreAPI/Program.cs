@@ -5,7 +5,7 @@ using TestCoreApi.Data;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 var builder = WebApplication.CreateBuilder(args);
-
+    
 // Add services to the container.
 
 builder.Services.AddControllers(option => option.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes=true);
