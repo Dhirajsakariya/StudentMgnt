@@ -46,7 +46,7 @@ const selectedDate = moment(birthday);
         return;
     }
     if (password !== confirmPassword) {
-        toast.error('Passwords do not match!');
+        toast.error('Password does not match!');
         return;
     }
     try {
@@ -126,7 +126,7 @@ const customToastStyle = {
                         required/>
                         <span className='iconle' onClick={toggle}>
                         {isVisible  ? <IoEyeOutline/> : <IoEyeOffOutline />
-}</span>
+                        }</span>
                 </div><p className='pass'>{error}</p>
                 <div className='form-groupl'>
                     <label className='labell'>Confirm Password:</label>

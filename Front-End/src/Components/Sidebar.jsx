@@ -20,11 +20,6 @@ const Sidebar = ({children}) => {
     const navigate = useHistory();
     const menuItem=[
 
-        // {
-        //     path:"/UpdateUserdetail",
-        //     name:"UpdateUser",
-        //     icon:<FaUserEdit/>
-        // },
          {
             path:"/UpdateUserdetail",
             name:"User Detail",

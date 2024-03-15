@@ -29,7 +29,7 @@ const ForgotPassword = () => {
             return;
         }
         if (newPassword !== confirmPassword) {
-            toast.error("Passwords do not match!");
+            toast.error("Password does match!");
             return;
         }
 

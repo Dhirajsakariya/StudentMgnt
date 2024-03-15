@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Sidebar from '../Sidebar';
 import config from '../Login/config';
-//import { FcSearch } from "react-icons/fc";
 
 const DisplayCategory = () => {
   
@@ -62,9 +61,6 @@ const DisplayCategory = () => {
         onChange={handleSecondarySearch}
         className='search-input2'
       />
-      {/* <div className="search-icon2">
-        <span><FcSearch/></span> 
-      </div> */}
       </div>
       <div className="category-entries">
       {filteredEntries.map((entry, index) => (
