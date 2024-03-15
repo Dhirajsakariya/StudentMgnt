@@ -65,38 +65,43 @@ namespace TestCoreApi.Controllers
             }
         }
 
+       
         [HttpPost]
         [Route("AddFamilyMember/{userId}")]
         public async Task<IActionResult> AddFamilyMember(Guid userId, FamilyMemberDto addFamilyMemberDto)
         {
             try
             {
-                var user = await dbContext.Users.FirstOrDefaultAsync(x => x. Id == userId );
+                var user = await dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
                 if (user == null)
                 {
                     return NotFound("User Not Found!");
                 }
-                //Validate Birthdate
+
+                // Validate BirthDate
                 var currentDate = DateOnly.FromDateTime(DateTime.UtcNow.Date);
                 if (addFamilyMemberDto.BirthDate > currentDate)
                 {
                     return BadRequest("BirthDate cannot be a future date.");
+                  
                 }
+
                 var familyMember = new FamilyMember()
                 {
                     Id = Guid.NewGuid(),
                     FirstName = addFamilyMemberDto.FirstName,
                     LastName = addFamilyMemberDto.LastName,
                     Gender = addFamilyMemberDto.Gender,
-                    BirthDate = addFamilyMemberDto.BirthDate,//"birthDate":"2000-02-20"
+                    BirthDate = addFamilyMemberDto.BirthDate,
                     Relation = addFamilyMemberDto.Relation,
                     UserId = user.Id
-                };    
+                };
+
                 await dbContext.FamilyMembers.AddAsync(familyMember);
                 await dbContext.SaveChangesAsync();
 
                 familyMember.UserId = user.Id;
-                //this line add
+                //this line 
                 addFamilyMemberDto.Id = familyMember.Id;
 
                 return Ok(addFamilyMemberDto);
@@ -106,6 +111,7 @@ namespace TestCoreApi.Controllers
                 return StatusCode(500, $"Internal server error: {e.Message}");
             }
         }
+
 
         [HttpPut]
         [Route("UpdateFamilyMember")]
@@ -119,7 +125,7 @@ namespace TestCoreApi.Controllers
                     return NotFound();
                 }
 
-                //Validate Birthdate
+                // Validate BirthDate
                 var currentDate = DateOnly.FromDateTime(DateTime.UtcNow.Date);
                 if (updateFamilyMemberDto.BirthDate > currentDate)
                 {
