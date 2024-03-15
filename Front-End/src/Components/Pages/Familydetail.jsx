@@ -55,7 +55,6 @@ const Familydetail = () => {
               }
               const data = await response.json();
               console.log(data);
-              //setUserData(data[0]?.userId); //Assuming the userId is available in first data
               setFamilyMembers(data);
           } catch (error) {
               console.error('Error fetching family members:', error);
@@ -68,17 +67,22 @@ const Familydetail = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  //   if (!formData.firstName || !formData.lastName || !formData.gender || !formData.birthDate || !formData.relation) {
-  //     toast.error('All fields are required!');
-  //     return;
-  // }
-    if(!formData.firstName)
+   // Check if birthdate is in the future
+   const enteredBirthDate = moment(formData.birthDate);
+   const currentDate = moment();
+   if (enteredBirthDate.isAfter(currentDate)) {
+     toast.error('Birthdate cannot be a future date!');
+     return;
+   }
+    else if(!formData.firstName)
     {
       setFirstNameError('Please Enter a FirstName');
+      return;
     }
     else if(!formData.lastName)
     {
       setLastNameError('Please Enter a LastName');
+      return;
     }
     else if (!formData.gender) {
       setGenderError('Please select a gender');
@@ -86,6 +90,7 @@ const Familydetail = () => {
     }
     else if(!formData.birthDate){
       setBirthadayError('Please Select a Birthdate');
+      return;
     }
     else if (!formData.relation) {
       setRelationError('Please select a Relation');
@@ -118,18 +123,15 @@ const Familydetail = () => {
             Gender: formData.gender,
             BirthDate: formData.birthDate,
             Relation: formData.relation,
-            //UserId: userData.id
           })
         });
       } else {
-        //familyMember.UserId = userData.id;
         response = await fetch(`${config.ApiUrl}FamilyMember/AddFamilyMember/${userData.id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            //Id:formData.id,
             FirstName: formData.firstName,
             LastName: formData.lastName,
             Gender: formData.gender,
@@ -149,12 +151,10 @@ const Familydetail = () => {
           setFamilyMembers(updatedFamilyMembers); // Update the state with the edited member
           toast.success("Edited Successfully!");
           setEditing(false); // Exit editing mode
-        } else if(familyMembers.length <= 8){
+        } 
+         else{
           setFamilyMembers([...familyMembers, result]); // Fetch updated data after adding
           toast.success("Added Successfully!");
-        }
-        else{
-          toast.error("Sorry,the maximun number of members has been reached.");
         }
         setFormData({ // Reset form fields
           id: '',

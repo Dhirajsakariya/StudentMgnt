@@ -19,7 +19,11 @@ const Sidebar = ({children}) => {
     const navigate = useHistory();
     const menuItem=[
 
+<<<<<<< HEAD
         {
+=======
+         {
+>>>>>>> 18907fb0694379c75cbf85e925b0aad61dd8ff33
             path:"/UpdateUserdetail",
             name:"UpdateUser",
             icon:<FaUserEdit/>
