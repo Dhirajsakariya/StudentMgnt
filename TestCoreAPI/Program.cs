@@ -15,8 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //builder.Services.AddDbContext<ContactsAPIDbContext>(options => options.UseInMemoryDatabase("ContactsDb"));
-builder.Services.AddDbContext<ContactsAPIDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ContactsApiConnectionString")));
+builder.Services.AddDbContext<StudentsAPIDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("StudentsAPIConnectionString")));
 
 
 var app = builder.Build();
@@ -49,7 +49,7 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    var dbContext = services.GetRequiredService<ContactsAPIDbContext>();
+    var dbContext = services.GetRequiredService<StudentsAPIDbContext>();
 }
 
 app.Run();
