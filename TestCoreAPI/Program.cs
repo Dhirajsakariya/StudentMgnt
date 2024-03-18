@@ -7,6 +7,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 var builder = WebApplication.CreateBuilder(args);
     
 // Add services to the container.
+//demo
 
 builder.Services.AddControllers(option => option.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes=true);
 

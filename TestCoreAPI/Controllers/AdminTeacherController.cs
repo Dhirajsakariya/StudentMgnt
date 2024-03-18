@@ -38,6 +38,8 @@ namespace TestCoreApi.Controllers
                 }
                 AdminTeacher adminTeacher = AdminTeacherMapper.Map(adminTeacherCreate);
                 adminTeacher.Id = Guid.NewGuid();
+                //adminTeacher.CreatedAt = adminTeacher.LastModifiedAt = DateTime.Now ;
+                //adminTeacher.CreatedBy = adminTeacher.ModifiedBy =  adminTeacher.Id;
                 await dbContext.AdminTeachers.AddAsync(adminTeacher);
                 await dbContext.SaveChangesAsync();
 
@@ -49,38 +51,32 @@ namespace TestCoreApi.Controllers
             }
         }
 
-        ////[HttpPut]
-        ////[Route("UpdateUserDetail/{email}")]
-        ////public async Task<IActionResult> UpdateUsers(string email, UserDto updateuserDetailDto)
-        ////{
-        ////    try
-        ////    {
+        //[HttpPut]
+        //[Route("PutAdminTeachers")]
+        //public async Task<ActionResult> PutAdminTeacher(AdminTeacherCreate adminTeacherCreate)
+        //{
+        //    try
+        //    {
+        //        var existingUser = await dbContext.AdminTeachers.Where(u => u.Email == adminTeacherCreate.Email).FirstOrDefaultAsync();
+        //        if (existingUser != null)
+        //        {
+        //            return Ok("email already exists");
+        //        }
+        //        AdminTeacher adminTeacher = AdminTeacherMapper.Map(adminTeacherCreate);
+        //        adminTeacher.Id = Guid.NewGuid();
+        //        adminTeacher.CreatedAt = adminTeacher.LastModifiedAt = DateTime.Now;
+        //        adminTeacher.CreatedBy = adminTeacher.ModifiedBy = adminTeacher.Id;
+        //        await dbContext.AdminTeachers.AddAsync(adminTeacher);
+        //        await dbContext.SaveChangesAsync();
 
-        ////        var userDetail = await dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, ex.Message);
+        //    }
+        //}
 
-        ////        if (userDetail == null)
-
-        ////        {
-        ////            return NotFound();
-        ////        }
-        ////        userDetail.Name = updateuserDetailDto.Name;
-        ////        userDetail.Gender = updateuserDetailDto.Gender;
-        ////        userDetail.PhoneNumber = updateuserDetailDto.PhoneNumber;
-        ////        userDetail.BirthDate = updateuserDetailDto.BirthDate;
-
-
-
-        ////        await dbContext.SaveChangesAsync();
-
-        ////        return Ok(userDetail);
-
-        ////    }
-        ////    catch (Exception ex)
-        ////    {
-        ////        return StatusCode(500, ex.Message);
-        ////    }
-
-        ////}
 
         ////[HttpDelete]
         ////[Route("DeleteUserDetail{id:guid}")]

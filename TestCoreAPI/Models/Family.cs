@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TestCoreApi.Models
 {
-    public class Family
+    public class Family : BaseModel
     {
         public Guid Id { get; set; }
         public required string Relation { get; set; }

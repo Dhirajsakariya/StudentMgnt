@@ -16,6 +16,7 @@ namespace TestCoreApi.Data
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<TimeTable> TimeTables { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AdminTeacher>().HasData(

@@ -2,7 +2,7 @@
 
 namespace TestCoreApi.Models
 {
-    public class TimeTable
+    public class TimeTable : BaseModel
     {
         public Guid Id { get; set; }  
         public int NoOfDay { get; set; }
