@@ -2,7 +2,7 @@
 
 namespace TestCoreApi.Models
 {
-    public class Fees : BaseModel
+    public class Fees 
     {
         public Guid Id { get; set; }
         public long  Amount { get; set; }
