@@ -106,8 +106,8 @@ namespace TestCoreApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetUser")]
-        public async Task<IActionResult> GetUser(string email)
+        [Route("IsLogin")]
+        public async Task<IActionResult> IsLogin(string email)
         {
             try
             {
