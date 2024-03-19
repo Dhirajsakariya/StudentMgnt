@@ -4,7 +4,7 @@ using TestCoreApi.Models;
 namespace TestCoreApi.Mapper
 {
     public class StandardMapper
-    {
+    {  
         public static Standard Map(StandardCreate standardCreate)
         {
             return new()

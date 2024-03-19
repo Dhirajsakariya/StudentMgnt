@@ -8,7 +8,7 @@ using TestCoreApi.Mapper;
 using TestCoreApi.Models;
 
 namespace TestCoreApi.Controllers
-{
+{  
     [Route("api/[controller]")]
     [ApiController]
     public class StandardController : ControllerBase
