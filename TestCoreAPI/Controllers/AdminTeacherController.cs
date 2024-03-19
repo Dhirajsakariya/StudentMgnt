@@ -104,5 +104,29 @@ namespace TestCoreApi.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet]
+        [Route("GetUser")]
+        public async Task<IActionResult> GetUser(string email)
+        {
+            try
+            {
+                var adminTeacher = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == email);
+                {
+                    if (adminTeacher != null)
+                    {
+                        return Ok(new { email = adminTeacher.Email, password = adminTeacher.Password, isAdmin = adminTeacher.IsAdmin });
+                    }
+                    else
+                    {
+                        return NotFound("User not found!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
