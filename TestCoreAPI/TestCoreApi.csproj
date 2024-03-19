@@ -8,13 +8,9 @@
 
   <ItemGroup>
     <Compile Remove="Create\**" />
-    <Compile Remove="Mapper\**" />
     <Content Remove="Create\**" />
-    <Content Remove="Mapper\**" />
     <EmbeddedResource Remove="Create\**" />
-    <EmbeddedResource Remove="Mapper\**" />
     <None Remove="Create\**" />
-    <None Remove="Mapper\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Dtos\" />
   </ItemGroup>
 
 </Project>
