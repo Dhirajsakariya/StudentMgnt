@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,13 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Create\**" />
     <Compile Remove="Mapper\**" />
-    <Content Remove="Create\**" />
     <Content Remove="Mapper\**" />
-    <EmbeddedResource Remove="Create\**" />
     <EmbeddedResource Remove="Mapper\**" />
-    <None Remove="Create\**" />
     <None Remove="Mapper\**" />
   </ItemGroup>
 
