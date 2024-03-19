@@ -2,7 +2,7 @@
 
 namespace TestCoreApi.Models
 {
-    public class Subject : BaseModel
+    public class Subject
     {
         public Guid Id { get; set; }
         public required string Name { get; set; }

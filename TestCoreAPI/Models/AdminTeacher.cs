@@ -22,18 +22,5 @@ namespace TestCoreApi.Models
         public Guid? SubjectId { get; set; }
         [ForeignKey(nameof(SubjectId))]
         public virtual Subject Subjects { get; set; }
-
-        public virtual ICollection<Fees> CreatorFees { get; set; }
-        public virtual ICollection<Fees> ModifierFees { get; set; }
-
-        public virtual ICollection<Family> CreatorFamilies { get; set; }
-        public virtual ICollection<Family> ModifierFamilies { get; set; }
-        public virtual ICollection<Student> CreatorStudents { get; set; }
-        public virtual ICollection<Student> ModifierStudents { get; set; }
-        public virtual ICollection<TimeTable> CreatorTimeTable { get; set; }
-        public virtual ICollection<TimeTable> ModifierTimeTable { get; set; }
-        public virtual ICollection<Standard> CreatorStandard { get; set; }
-        public virtual ICollection<Standard> ModifierStandard { get; set; }
-
     }
 }

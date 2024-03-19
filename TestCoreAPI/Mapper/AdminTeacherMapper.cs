@@ -1,6 +1,7 @@
-﻿using System.Net.Http.Headers;
-using TestCoreApi.CreateModel;
+﻿using TestCoreApi.CreateModel;
 using TestCoreApi.Dtos;
+using System.Net.Http.Headers;
+
 using TestCoreApi.Models;
 
 namespace TestCoreApi.Mapper
@@ -24,16 +25,16 @@ namespace TestCoreApi.Mapper
                 State = adminTeacherCreate.State,
                 PinCode = adminTeacherCreate.PinCode,
                 IsAdmin = adminTeacherCreate.IsAdmin,
-                SubjectId = adminTeacherCreate.SubjectId,
+                //SubjectId = adminTeacherCreate.SubjectId,
             };
-           
+
         }
 
         public static AdminTeacherDto MapToDto(AdminTeacher adminTeacher)
         {
             return new()
             {
-                Id= adminTeacher.Id,
+                Id = adminTeacher.Id,
                 Name = adminTeacher.Name,
                 Email = adminTeacher.Email,
                 Password = adminTeacher.Password,
@@ -51,7 +52,5 @@ namespace TestCoreApi.Mapper
             };
 
         }
-
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace TestCoreApi.Models
 {
-    public class Standard : BaseModel
+    public class Standard
     {
         public Guid Id { get; set; }
         public required int StandardNumber {  get; set; }

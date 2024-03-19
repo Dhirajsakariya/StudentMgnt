@@ -2,7 +2,7 @@
 
 namespace TestCoreApi.Models
 {
-    public class Student :BaseModel
+    public class Student 
     {
         public Guid Id { get; set; }
         public int RollNo {  get; set; } 
