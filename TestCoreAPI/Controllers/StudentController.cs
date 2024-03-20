@@ -28,6 +28,20 @@ namespace TestCoreApi.Controllers
             return students.Select(s => StudentMapper.MapToDto(s)).ToList();
         }
 
+        [HttpGet]
+        [Route("GetStudent{id}")]
+        public async Task<ActionResult<StudentDto>> GetStudent(Guid id)
+        {
+            var student = await dbContext.Students.FindAsync(id);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            return StudentMapper.MapToDto(student);
+        }
+
 
         [HttpPost]
         [Route("PostStudent")]
@@ -57,7 +71,7 @@ namespace TestCoreApi.Controllers
         }
 
         [HttpPut]
-        [Route("PutAdminTeachers{id}")]
+        [Route("PutStudent{id}")]
         public async Task<ActionResult> PutStudent(Guid id, StudentDto studentDto)
         {
             try
