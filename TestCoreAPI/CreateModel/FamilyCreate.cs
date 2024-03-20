@@ -1,14 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-
-using Microsoft.AspNetCore.SignalR;
-
 using TestCoreApi.Models;
 
-namespace TestCoreApi.Dtos
+namespace TestCoreApi.CreateModel
 {
     [NotMapped]
-    public class FamilyMemberDto
+    public class FamilyCreate
     {
+
         public Guid Id { get; set; }
         public required string Relation { get; set; }
         public required string Name { get; set; }
@@ -18,6 +16,10 @@ namespace TestCoreApi.Dtos
         public required string MobileNumber { get; set; }
 
         public Guid StudentId { get; set; }
+
+        [ForeignKey(nameof(StudentId))]
+        public virtual Student Students { get; set; }
+
 
     }
 }
