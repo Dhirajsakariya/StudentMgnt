@@ -3,7 +3,7 @@ using TestCoreApi.Models;
 
 namespace TestCoreApi.CreateModel
 {
-    [NotMapped]
+    [NotMapped]  
     public class TimeTableCreate
     {
         public int NoOfDay { get; set; }

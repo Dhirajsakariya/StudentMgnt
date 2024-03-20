@@ -3,7 +3,7 @@ using TestCoreApi.Models;
 
 namespace TestCoreApi.Dtos
 {
-    [NotMapped]
+    [NotMapped]  
     public class TimeTableDto
     {
         public Guid Id { get; set; }

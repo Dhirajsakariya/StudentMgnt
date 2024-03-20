@@ -16,7 +16,7 @@ namespace TestCoreApi.Mapper
                 SubjectId = timeTableCreate.SubjectId,
                 StandardId = timeTableCreate.StandardId
             };
-        }
+        }  
         public static TimeTableDto MapToDto(TimeTable timeTable)
         {
             return new()
