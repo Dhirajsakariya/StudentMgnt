@@ -1,5 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TestCoreApi.CreateModel;
+using TestCoreApi.Data;
+using TestCoreApi.Dtos;
+using TestCoreApi.Mapper;
+using TestCoreApi.Models;
 
 namespace TestCoreApi.Controllers
 {
@@ -15,7 +21,7 @@ namespace TestCoreApi.Controllers
 
         [HttpGet]
         [Route("GetFees")]
-        public async Task<ActionResult<AdminTeacher>> GetFees()
+        public async Task<ActionResult<Fees>> GetFees()
         {
             return Ok(await dbContext.Fees.ToListAsync());
         }
