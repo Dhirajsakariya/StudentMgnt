@@ -25,7 +25,7 @@ namespace TestCoreApi.Mapper
                 State = adminTeacherCreate.State,
                 PinCode = adminTeacherCreate.PinCode,
                 IsAdmin = adminTeacherCreate.IsAdmin,
-                //SubjectId = adminTeacherCreate.SubjectId,
+                SubjectId = adminTeacherCreate.SubjectId,
             };
 
         }

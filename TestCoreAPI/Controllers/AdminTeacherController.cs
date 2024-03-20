@@ -6,7 +6,7 @@ using TestCoreApi.Data;
 using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
-
+  
 namespace TestCoreApi.Controllers
 {
     [Route("api/[controller]")]
@@ -103,6 +103,30 @@ namespace TestCoreApi.Controllers
                 return Ok();
             }
             return NotFound();
+        }
+
+        [HttpGet]
+        [Route("IsLogin")]
+        public async Task<IActionResult> IsLogin(string email)
+        {
+            try
+            {
+                var adminTeacher = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == email);
+                {
+                    if (adminTeacher != null)
+                    {
+                        return Ok(new { email = adminTeacher.Email, password = adminTeacher.Password, isAdmin = adminTeacher.IsAdmin });
+                    }
+                    else
+                    {
+                        return NotFound("User not found!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
