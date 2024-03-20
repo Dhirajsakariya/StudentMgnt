@@ -1,5 +1,8 @@
-﻿namespace TestCoreApi.CreateModel
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TestCoreApi.CreateModel
 {
+    [NotMapped]
     public class FamilyCreate
     {
         public required string Relation { get; set; }
