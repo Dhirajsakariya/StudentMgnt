@@ -55,11 +55,13 @@ namespace TestCoreApi.Controllers
                     return BadRequest("Invalid StandardId. Standard with the provided Id does not exist.");
                 }
 
-                // Get the maximum RollNo from existing students
-                int maxRollNo = await dbContext.Students.MaxAsync(s => (int?)s.RollNo) ?? 0;
+                // Get the maximum RollNo for the given StandardId
+                int maxRollNoForStandard = await dbContext.Students
+                    .Where(s => s.StandardId == studentCreate.StandardId)
+                    .MaxAsync(s => (int?)s.RollNo) ?? 0;
 
                 Student student = StudentMapper.Map(studentCreate);
-                student.RollNo = maxRollNo + 1; // Generate a new RollNo
+                student.RollNo = maxRollNoForStandard + 1; // Generate a new RollNo based on the StandardId
 
                 await dbContext.Students.AddAsync(student);
                 await dbContext.SaveChangesAsync();
