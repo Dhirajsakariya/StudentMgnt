@@ -6,7 +6,8 @@ using TestCoreApi.Data;
 using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
-  
+using TestCoreApi.RequestModel;
+
 namespace TestCoreApi.Controllers
 {
     [Route("api/[controller]")]
@@ -20,10 +21,25 @@ namespace TestCoreApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetAdminTeacherDetail")]
-        public async Task<ActionResult<AdminTeacher>> GetAdminTeachers()
+        [Route("GetAdminTeachers")]
+        public async Task<ActionResult<IEnumerable<AdminTeacherDto>>> GetAdminTeacher()
         {
-            return Ok(await dbContext.AdminTeachers.ToListAsync());
+            var adminTeachers = await dbContext.AdminTeachers.ToListAsync();
+            return adminTeachers.Select(s => AdminTeacherMapper.MapToDto(s)).ToList();
+        }
+
+        [HttpGet]
+        [Route("GetAdminTeacher{id}")]
+        public async Task<ActionResult<AdminTeacherDto>> GetAdminTeacher(Guid id)
+        {
+            var adminTeacher = await dbContext.AdminTeachers.FindAsync(id);
+
+            if (adminTeacher == null)
+            {
+                return NotFound();
+            }
+
+            return AdminTeacherMapper.MapToDto(adminTeacher);
         }
 
         [HttpPost]
@@ -105,23 +121,56 @@ namespace TestCoreApi.Controllers
             return NotFound();
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("IsLogin")]
-        public async Task<IActionResult> IsLogin(string email)
+        public async Task<IActionResult> IsLogin(LoginRequestModel loginRequestModel)
         {
             try
             {
-                var adminTeacher = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == email);
+                if(loginRequestModel.Role.ToLower() == "admin")
                 {
-                    if (adminTeacher != null)
+                    var admin = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == loginRequestModel.Email && u.Password == loginRequestModel.Password);
                     {
-                        return Ok(new { email = adminTeacher.Email, password = adminTeacher.Password, isAdmin = adminTeacher.IsAdmin });
+                        if (admin != null)
+                        {
+                            return Ok(new { email = admin.Email, password = admin.Password });
+                        }
+                        else
+                        {
+                            return NotFound("User not found!");
+                        }
                     }
-                    else
+
+                }
+                else if(loginRequestModel.Role.ToLower() == "teacher")
+                {
+                    var teacher = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == loginRequestModel.Email && u.Password == loginRequestModel.Password);
                     {
-                        return NotFound("User not found!");
+                        if (teacher != null)
+                        {
+                            return Ok(new { email = teacher.Email, password = teacher.Password });
+                        }
+                        else
+                        {
+                            return NotFound("User not found!");
+                        }
                     }
                 }
+                else
+                {
+                    var student = await dbContext.Students.FirstOrDefaultAsync(u => u.Email == loginRequestModel.Email && u.Password == loginRequestModel.Password);
+                    {
+                        if (student != null)
+                        {
+                            return Ok(new { email = student.Email, password = student.Password });
+                        }
+                        else
+                        {
+                            return NotFound("User not found!");
+                        }
+                    }
+                }
+               
             }
             catch (Exception ex)
             {
