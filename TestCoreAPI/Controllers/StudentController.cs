@@ -42,7 +42,6 @@ namespace TestCoreApi.Controllers
             return StudentMapper.MapToDto(student);
         }
 
-
         [HttpPost]
         [Route("PostStudent")]
         public async Task<ActionResult<StudentDto>> PostStudent(StudentCreate studentCreate)
@@ -56,9 +55,14 @@ namespace TestCoreApi.Controllers
                     return BadRequest("Invalid StandardId. Standard with the provided Id does not exist.");
                 }
 
+                // Get the maximum RollNo for the given StandardId
+                int maxRollNoForStandard = await dbContext.Students
+                    .Where(s => s.StandardId == studentCreate.StandardId)
+                    .MaxAsync(s => (int?)s.RollNo) ?? 0;
+
                 Student student = StudentMapper.Map(studentCreate);
-                student.Id = Guid.NewGuid();
-                
+                student.RollNo = maxRollNoForStandard + 1; // Generate a new RollNo based on the StandardId
+
                 await dbContext.Students.AddAsync(student);
                 await dbContext.SaveChangesAsync();
 

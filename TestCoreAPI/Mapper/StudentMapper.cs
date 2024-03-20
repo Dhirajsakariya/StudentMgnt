@@ -10,7 +10,6 @@ namespace TestCoreApi.Mapper
         {
             return new()
             {
-                RollNo = studentCreate.RollNo,
                 Name = studentCreate.Name,
                 Email = studentCreate.Email,
                 Password = studentCreate.Password,
@@ -18,6 +17,7 @@ namespace TestCoreApi.Mapper
                 BirthDate = studentCreate.BirthDate,
                 MobileNumber = studentCreate.MobileNumber,
                 JoinDate = studentCreate.JoinDate,
+                BloodGroup = studentCreate.BloodGroup,
                 Address = studentCreate.Address,
                 City = studentCreate.City,
                 District = studentCreate.District,
@@ -31,13 +31,13 @@ namespace TestCoreApi.Mapper
             return new()
             {
                 Id = student.Id,
-                RollNo = student.RollNo,
                 Name = student.Name,
                 Email = student.Email,
                 Password = student.Password,
                 Gender = student.Gender,
                 BirthDate = student.BirthDate,
                 MobileNumber = student.MobileNumber,
+                JoinDate = student.JoinDate,
                 Address = student.Address,
                 City = student.City,
                 District = student.District,
@@ -56,6 +56,7 @@ namespace TestCoreApi.Mapper
             student.Gender = studentDto.Gender;
             student.BirthDate = studentDto.BirthDate;
             student.MobileNumber = studentDto.MobileNumber;
+            student.JoinDate = studentDto.JoinDate;
             student.Address = studentDto.Address;
             student.City = studentDto.City;
             student.District = studentDto.District;
