@@ -1,4 +1,5 @@
 ﻿using TestCoreApi.CreateModel;
+using TestCoreApi.Dtos;
 using TestCoreApi.Models;
 
 namespace TestCoreApi.Mapper
@@ -11,6 +12,16 @@ namespace TestCoreApi.Mapper
             {
                 Amount = feesCreate.Amount,
                 StudentId = feesCreate.StudentId,
+            };
+
+        }
+        public static FeesDto MapToDto(Fees fees)
+        {
+            return new()
+            {
+                Id = fees.Id,
+                Amount = fees.Amount,
+                StudentId = fees.StudentId,
             };
 
         }
