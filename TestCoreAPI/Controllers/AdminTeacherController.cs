@@ -12,7 +12,7 @@ using TestCoreApi.UpdateModel;
 namespace TestCoreApi.Controllers
 {  
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController]  
     public class AdminTeacherController : ControllerBase
     {
         private readonly StudentsAPIDbContext  dbContext;
@@ -80,7 +80,7 @@ namespace TestCoreApi.Controllers
                     return NotFound();
                 }
 
-                AdminTeacherMapper.MapToEntity(adminTeacherUpdate);
+                AdminTeacherMapper.MapToEntity(adminTeacherUpdate,adminTeacher);
                 dbContext.Entry(adminTeacher).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
                 return Ok(adminTeacherUpdate);

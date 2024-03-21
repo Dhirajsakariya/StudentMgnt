@@ -36,6 +36,44 @@ namespace TestCoreApi.Data
                     PinCode = "360001",
                     IsAdmin = true
                 });
+            
+            modelBuilder.Entity<Standard>().HasData(
+                new Standard()
+                {
+                    Id = new Guid("A8283465-6AE7-43D6-8ECA-09C02AB12B4C"),
+                    StandardNumber = 8,
+                    Section = "A",
+                },
+                new Standard()
+                {
+                    Id = new Guid("F82BA9D1-5D85-4C20-BCA0-142DD07E1316"),
+                    StandardNumber = 8,
+                    Section = "B",
+                },
+                new Standard()
+                {
+                    Id = new Guid("49716B8A-ACA6-4CE9-9A74-199CE2A5AF40"),
+                    StandardNumber = 9,
+                    Section = "A",
+                },
+                new Standard()
+                {
+                    Id = new Guid("3241A142-031D-41E4-A1BA-239EFC8559F7"),
+                    StandardNumber = 9,
+                    Section = "B",
+                },
+                new Standard()
+                {
+                    Id = new Guid("1ECC5761-7DDB-4EF7-8B16-28C91845A386"),
+                    StandardNumber = 10,
+                    Section = "A",
+                },
+                new Standard()
+                {
+                    Id = new Guid("B880223F-458F-4E5F-A012-313119BE3724"),
+                    StandardNumber = 10,
+                    Section = "B",
+                });
         }
 
     }

@@ -22,10 +22,25 @@ namespace TestCoreApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetStanadard")]
-        public async Task<ActionResult<Standard>> GetStanadard()
+        [Route("GetStandards")]
+        public async Task<ActionResult<IEnumerable<StandardDto>>> GetStandards()
         {
-            return Ok(await dbContext.Standards.ToListAsync());
+            var standard = await dbContext.Standards.ToListAsync();
+            return standard.Select(s => StandardMapper.MapToDto(s)).ToList();
+        }
+
+        [HttpGet]
+        [Route("GetStandard{id}")]
+        public async Task<ActionResult<StandardDto>> GetAdminTeacher(Guid id)
+        {
+            var standard = await dbContext.Standards.FindAsync(id);
+
+            if (standard == null)
+            {
+                return NotFound();
+            }
+
+            return StandardMapper.MapToDto(standard);
         }
 
         [HttpPost]
@@ -59,8 +74,8 @@ namespace TestCoreApi.Controllers
                 {
                     return NotFound();
                 }
-
-               StandardMapper.MapToEntity(standardUpdate);
+                  
+               StandardMapper.MapToEntity(standardUpdate,standard);
 
                 dbContext.Entry(standard).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();

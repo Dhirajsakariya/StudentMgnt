@@ -5,7 +5,7 @@ namespace TestCoreApi.Dtos
 {
     [NotMapped]  
     public class TimeTableDto
-    {
+    { 
         public Guid Id { get; set; }
         public int NoOfDay { get; set; }
         public TimeOnly StartTime { get; set; }

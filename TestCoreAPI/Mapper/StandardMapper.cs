@@ -26,14 +26,10 @@ namespace TestCoreApi.Mapper
             };
 
         }
-        public static Standard MapToEntity(StandardUpdate standardUpdate)
+        public static void MapToEntity(StandardUpdate standardUpdate,Standard standard)
         {
-            return new()
-            {
-                StandardNumber = standardUpdate.StandardNumber,
-                Section = standardUpdate.Section,
-            };
-
+            standard.Section = standardUpdate.Section;
+            standard.StandardNumber = standardUpdate.StandardNumber;
         }
     }
 }

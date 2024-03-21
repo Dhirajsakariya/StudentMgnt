@@ -7,6 +7,7 @@ using TestCoreApi.Data;
 using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Controllers
 {
@@ -22,9 +23,24 @@ namespace TestCoreApi.Controllers
 
         [HttpGet]
         [Route("GetSubjects")]
-        public async Task<ActionResult<AdminTeacher>> GetSubjects()
+        public async Task<ActionResult<IEnumerable<SubjectDto>>> GetSubjects()
         {
-            return Ok(await dbContext.Subjects.ToListAsync());
+            var subject = await dbContext.Subjects.ToListAsync();
+            return subject.Select(s => SubjectMapper.MapToDto(s)).ToList();
+        }
+
+        [HttpGet]
+        [Route("GetSubject{id}")]
+        public async Task<ActionResult<SubjectDto>> GetSubject(Guid id)
+        {
+            var subject = await dbContext.Subjects.FindAsync(id);
+
+            if (subject == null)
+            {
+                return NotFound();
+            }
+
+            return SubjectMapper.MapToDto(subject);
         }
 
         [HttpPost]
@@ -47,7 +63,7 @@ namespace TestCoreApi.Controllers
         }
         [HttpPut]
         [Route("PutSubject{id}")]
-        public async Task<ActionResult> PutSubject(Guid id, SubjectDto subjectDto)
+        public async Task<ActionResult> PutSubject(Guid id, SubjectUpdate subjectUpdate)
         {
             try
             {
@@ -57,11 +73,12 @@ namespace TestCoreApi.Controllers
                 {
                     return NotFound();
                 }
-                subject.Name = subjectDto.Name;
-                
+
+                SubjectMapper.MapToEntity(subjectUpdate, subject);
+
                 dbContext.Entry(subject).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
-                return Ok(subject);
+                return Ok(subjectUpdate);
 
             }
             catch (Exception ex)

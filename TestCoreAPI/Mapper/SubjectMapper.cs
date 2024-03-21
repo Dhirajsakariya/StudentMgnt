@@ -1,5 +1,9 @@
-﻿using TestCoreApi.CreateModel;
+﻿using Microsoft.AspNetCore.Mvc;
+
+using TestCoreApi.CreateModel;
+using TestCoreApi.Dtos;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Mapper
 {
@@ -13,6 +17,21 @@ namespace TestCoreApi.Mapper
                 StandardId = subjectCreate.StandardId,
             };
 
+        }
+        public static SubjectDto MapToDto(Subject subject)
+        {
+            return new()
+            {
+                Id = subject.Id,
+                Name = subject.Name,
+                StandardId = subject.StandardId,
+            };
+        }
+        public static void MapToEntity(SubjectUpdate subjectUpdate, Subject subject)
+        {
+            {
+                subject.Name = subjectUpdate.Name;
+            }
         }
     }
 }

@@ -56,7 +56,7 @@ namespace TestCoreApi.Controllers
                     return NotFound();
                 }
                 fees.Amount = feesDto.Amount;
-                
+   
 
                 dbContext.Entry(fees).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();

@@ -4,7 +4,7 @@ namespace TestCoreApi.Dtos
 {
     [NotMapped]
     public class FeesDto
-    {
+    { 
         public Guid Id { get; set; }
         public long Amount { get; set; }
 

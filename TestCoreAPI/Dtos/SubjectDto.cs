@@ -6,9 +6,9 @@ namespace TestCoreApi.Dtos
 {
     [NotMapped]
     public class SubjectDto
-    {
+    { 
         public Guid Id { get; set; }
-        public required string Name { get; set; }
-        public required Guid StandardId { get; set; }
+        public string Name { get; set; }
+        public Guid StandardId { get; set; }
     }
 }
