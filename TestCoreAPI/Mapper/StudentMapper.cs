@@ -37,6 +37,7 @@ namespace TestCoreApi.Mapper
                 Gender = student.Gender,
                 BirthDate = student.BirthDate,
                 MobileNumber = student.MobileNumber,
+                BloodGroup = student.BloodGroup,
                 JoinDate = student.JoinDate,
                 Address = student.Address,
                 City = student.City,
@@ -56,6 +57,7 @@ namespace TestCoreApi.Mapper
             student.Gender = studentDto.Gender;
             student.BirthDate = studentDto.BirthDate;
             student.MobileNumber = studentDto.MobileNumber;
+            student.BloodGroup = studentDto.BloodGroup;
             student.JoinDate = studentDto.JoinDate;
             student.Address = studentDto.Address;
             student.City = studentDto.City;
