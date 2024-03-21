@@ -6,6 +6,7 @@ using TestCoreApi.Data;
 using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Controllers
 {
@@ -19,28 +20,39 @@ namespace TestCoreApi.Controllers
             this.dbContext = dbContext;
         }
 
+
         [HttpGet]
         [Route("GetFamilyDetail")]
-        public async Task<ActionResult<Family>> GetFamily()
+        public async Task<ActionResult<IEnumerable<FamilyDto>>> GetFamily()
         {
-            return Ok(await dbContext.Families.ToListAsync());
+            var family= await dbContext.Families.ToListAsync();
+            return family.Select(s => FamilyMapper.MapToDto(s)).ToList();
         }
 
+        [HttpGet]
+        [Route("GetFamilyDetail{id}")]
+        public async Task<ActionResult<FamilyDto>> GetFamily(Guid id)
+        {
+            var family = await dbContext.Families.FindAsync(id);
+
+            if (family == null)
+            {
+                return NotFound();
+            }
+
+            return FamilyMapper.MapToDto(family);
+        }
+
+          
         [HttpPost]
         [Route("PostFamily")]
         public async Task<ActionResult> PostFamily(FamilyCreate familycreate)
         {
             try
             {
-                var existinguser = await dbContext.Families.Where(u => u.Email == familycreate.Email).FirstOrDefaultAsync();
-                if (existinguser != null)
-                {
-                    return Ok("email already exists");
-                }
+                
                 Family family = FamilyMapper.Map(familycreate);
                 family.Id = Guid.NewGuid();
-                //family.createdat = family.lastmodifiedat = datetime.now ;
-                //family.createdby = family.modifiedby =  family.id;
                 await dbContext.Families.AddAsync(family);
                 await dbContext.SaveChangesAsync();
 
@@ -54,7 +66,7 @@ namespace TestCoreApi.Controllers
 
         [HttpPut]
         [Route("PutFamily{id}")]
-        public async Task<ActionResult> PutFamily(Guid id, FamilyDto familyDto)
+        public async Task<ActionResult> PutFamily(Guid id, FamilyUpdate familyUpdate)
         {
             try
             {
@@ -64,19 +76,11 @@ namespace TestCoreApi.Controllers
                 {
                     return NotFound();
                 }
-                family.Id = familyDto.Id;
-                family.Relation = familyDto.Relation;
-                family.Name = familyDto.Name;
-                family.Email = familyDto.Email;
-                family.Occupation = familyDto.Occupation;
-                family.Gender = familyDto.Gender;
-                family.MobileNumber = familyDto.MobileNumber;
-                family.StudentId = familyDto.StudentId;
 
-
+                FamilyMapper.MapToEntity(familyUpdate);
                 dbContext.Entry(family).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
-                return Ok(family);
+                return Ok(familyUpdate);
 
             }
             catch (Exception ex)

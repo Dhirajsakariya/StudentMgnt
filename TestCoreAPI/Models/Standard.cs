@@ -1,4 +1,4 @@
-﻿namespace TestCoreApi.Models
+﻿ namespace TestCoreApi.Models
 {
     public class Standard
     {
