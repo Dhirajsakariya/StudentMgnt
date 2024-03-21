@@ -10,6 +10,7 @@ namespace TestCoreApi.Mapper
         {
             return new()
             {
+                GrNo=studentCreate.GrNo,
                 Name = studentCreate.Name,
                 Email = studentCreate.Email,
                 Password = studentCreate.Password,
@@ -30,6 +31,7 @@ namespace TestCoreApi.Mapper
         {
             return new()
             {
+                GrNo=student.GrNo,
                 Id = student.Id,
                 Name = student.Name,
                 Email = student.Email,
@@ -51,6 +53,7 @@ namespace TestCoreApi.Mapper
 
         public static void MapToEntity(StudentDto studentDto, Student student)
         {
+            studentDto.GrNo = studentDto.GrNo;
             student.Name = studentDto.Name;
             student.Email = studentDto.Email;
             student.Password = studentDto.Password;
