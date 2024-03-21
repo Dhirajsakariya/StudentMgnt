@@ -3,6 +3,7 @@
 using TestCoreApi.CreateModel;
 using TestCoreApi.Dtos;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Mapper
 {
@@ -26,19 +27,12 @@ namespace TestCoreApi.Mapper
                 StandardId = subject.StandardId,
             };
         }
-        public static Subject MapToEntity(SubjectDto subjectDto)
+        public static SubjectDto MapToEntity(SubjectUpdate subjectUpdate)
         {
             return new()
             {
-                //Id = subjectDto.Id,
-                Name = subjectDto.Name,
-                StandardId = subjectDto.StandardId,
+                Name = subjectUpdate.Name,
             };
         }
-
-
-
-
-
     }
 }

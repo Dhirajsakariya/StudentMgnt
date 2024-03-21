@@ -7,6 +7,7 @@ using TestCoreApi.Data;
 using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Controllers
 {
@@ -62,7 +63,7 @@ namespace TestCoreApi.Controllers
         }
         [HttpPut]
         [Route("PutSubject{id}")]
-        public async Task<ActionResult> PutSubject(Guid id, SubjectDto subjectDto)
+        public async Task<ActionResult> PutSubject(Guid id, SubjectUpdate subjectUpdate)
         {
             try
             {
@@ -72,17 +73,15 @@ namespace TestCoreApi.Controllers
                 {
                     return NotFound();
                 }
-                //subject.Name = subjectDto.Name;
-                //SubjectMapper.MapToDto(subjectDto);
+                
 
-                /*var updatedSubject =*/ SubjectMapper.MapToEntity(subjectDto);
+                SubjectMapper.MapToEntity(subjectUpdate);
 
-                //subject.Name = updatedSubject.Name;
-                //subject.StandardId = updatedSubject.StandardId;
+                
 
                 dbContext.Entry(subject).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
-                return Ok(subject);
+                return Ok(subjectUpdate);
 
             }
             catch (Exception ex)

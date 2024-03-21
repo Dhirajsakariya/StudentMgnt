@@ -1,10 +1,9 @@
-﻿
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TestCoreApi.CreateModel
+namespace TestCoreApi.UpdateModel
 {
     [NotMapped]
-    public class AdminTeacherCreate
+    public class StudentUpdate
     {
         public string Name { get; set; }
         public string Email { get; set; }
@@ -13,13 +12,11 @@ namespace TestCoreApi.CreateModel
         public DateOnly BirthDate { get; set; }
         public string MobileNumber { get; set; }
         public DateOnly JoinDate { get; set; }
+        public string BloodGroup { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string District { get; set; }
         public string State { get; set; }
-        public string PinCode { get; set; }
-        public bool IsAdmin { get; set; } = false;
-        public Guid SubjectId { get; set; }
-
+        public required string PinCode { get; set; }
     }
 }

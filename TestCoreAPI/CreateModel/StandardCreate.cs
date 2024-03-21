@@ -5,7 +5,7 @@ namespace TestCoreApi.CreateModel
     [NotMapped]
     public class StandardCreate
     {  
-        public required int StandardNumber { get; set; }
-        public required string Section { get; set; }
+        public int StandardNumber { get; set; }
+        public string Section { get; set; }
     }
 }

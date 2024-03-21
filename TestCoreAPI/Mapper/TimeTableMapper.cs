@@ -1,6 +1,7 @@
 ﻿using TestCoreApi.CreateModel;
 using TestCoreApi.Dtos;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Mapper
 {
@@ -29,6 +30,15 @@ namespace TestCoreApi.Mapper
                 StandardId = timeTable.StandardId
             };
 
+        }
+        public static TimeTable MapToEntity(TimeTableUpdate timeTableUpdate)
+        {
+            return new()
+            {
+                NoOfDay = timeTableUpdate.NoOfDay,
+                StartTime = timeTableUpdate.StartTime,
+                EndTime = timeTableUpdate.EndTime
+            };
         }
     }
 }

@@ -5,6 +5,7 @@ using TestCoreApi.Data;
 using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Controllers
 {  
@@ -20,9 +21,24 @@ namespace TestCoreApi.Controllers
 
         [HttpGet]
         [Route("GetTimeTables")]
-        public async Task<ActionResult<TimeTable>> GetTimeTable()
+        public async Task<ActionResult<IEnumerable<TimeTableDto>>> GetTimeTables()
         {
-            return Ok(await dbContext.TimeTables.ToListAsync());
+            var timeTable = await dbContext.TimeTables.ToListAsync();
+            return timeTable.Select(s => TimeTableMapper.MapToDto(s)).ToList();
+        }
+
+        [HttpGet]
+        [Route("GetTimeTable{id}")]
+        public async Task<ActionResult<TimeTableDto>> GetTimeTable(Guid id)
+        {
+            var timeTable = await dbContext.TimeTables.FindAsync(id);
+
+            if (timeTable == null)
+            {
+                return NotFound();
+            }
+
+            return TimeTableMapper.MapToDto(timeTable);
         }
 
         [HttpPost]
@@ -46,7 +62,7 @@ namespace TestCoreApi.Controllers
 
         [HttpPut]
         [Route("PutTimeTable{id}")]
-        public async Task<ActionResult> PutTimeTable(Guid id, TimeTableDto timeTableDto)
+        public async Task<ActionResult> PutTimeTable(Guid id, TimeTableUpdate timeTableUpdate)
         {
             try
             {
@@ -56,14 +72,11 @@ namespace TestCoreApi.Controllers
                 {
                     return NotFound();
                 }
-                timeTable.NoOfDay = timeTableDto.NoOfDay;
-                timeTable.StartTime = timeTableDto.StartTime;
-                timeTable.EndTime = timeTableDto.EndTime;
 
-
+                TimeTableMapper.MapToEntity(timeTableUpdate);
                 dbContext.Entry(timeTable).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
-                return Ok(timeTable);
+                return Ok(timeTableUpdate);
 
             }
             catch (Exception ex)
