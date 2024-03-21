@@ -3,6 +3,7 @@ using Microsoft.Identity.Client;
 using TestCoreApi.CreateModel;
 using TestCoreApi.Dtos;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Mapper
 {
@@ -36,7 +37,21 @@ namespace TestCoreApi.Mapper
                 StudentId = family.StudentId,
 
             };
-        }   
+        }
 
-     }
+        public static Family MapToEntity(FamilyUpdate familyUpdate)
+        {
+            return new()
+            {
+                Relation = familyUpdate.Relation,
+                Name = familyUpdate.Name,
+                Email = familyUpdate.Email,
+                Occupation = familyUpdate.Occupation,
+                Gender = familyUpdate.Gender,
+                MobileNumber = familyUpdate.MobileNumber,
+            };
+
+        }
+
+    }
 }

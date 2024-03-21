@@ -6,6 +6,7 @@ using TestCoreApi.Data;
 using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Controllers
 {
@@ -65,7 +66,7 @@ namespace TestCoreApi.Controllers
 
         [HttpPut]
         [Route("PutFamily{id}")]
-        public async Task<ActionResult> PutFamily(Guid id, FamilyDto familyDto)
+        public async Task<ActionResult> PutFamily(Guid id, FamilyUpdate familyUpdate)
         {
             try
             {
@@ -75,18 +76,11 @@ namespace TestCoreApi.Controllers
                 {
                     return NotFound();
                 }
-                
-                family.Relation = familyDto.Relation;
-                family.Name = familyDto.Name;
-                family.Email = familyDto.Email;
-                family.Occupation = familyDto.Occupation;
-                family.Gender = familyDto.Gender;
-                family.MobileNumber = familyDto.MobileNumber;
-                
 
+                FamilyMapper.MapToEntity(familyUpdate);
                 dbContext.Entry(family).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
-                return Ok(family);
+                return Ok(familyUpdate);
 
             }
             catch (Exception ex)

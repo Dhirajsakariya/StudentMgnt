@@ -6,7 +6,8 @@ using TestCoreApi.Data;
 using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
-
+using TestCoreApi.UpdateModel;
+  
 namespace TestCoreApi.Controllers
 {  
     [Route("api/[controller]")]
@@ -48,7 +49,7 @@ namespace TestCoreApi.Controllers
 
         [HttpPut]
         [Route("PutStandard{id}")]
-        public async Task<ActionResult> PutStandard(Guid id, StandardDto standardDto)
+        public async Task<ActionResult> PutStandard(Guid id, StandardUpdate standardUpdate)
         {
             try
             {
@@ -59,12 +60,11 @@ namespace TestCoreApi.Controllers
                     return NotFound();
                 }
 
-                standard.StandardNumber = standardDto.StandardNumber;
-                standard.Section = standardDto.Section;
-                
+               StandardMapper.MapToEntity(standardUpdate);
+
                 dbContext.Entry(standard).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
-                return Ok(standard);
+                return Ok(standardUpdate);
 
             }
             catch (Exception ex)
