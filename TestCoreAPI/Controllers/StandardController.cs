@@ -75,7 +75,7 @@ namespace TestCoreApi.Controllers
                     return NotFound();
                 }
 
-               StandardMapper.MapToEntity(standardUpdate);
+               StandardMapper.MapToEntity(standardUpdate,standard);
 
                 dbContext.Entry(standard).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();

@@ -31,13 +31,12 @@ namespace TestCoreApi.Mapper
             };
 
         }
-        public static TimeTable MapToEntity(TimeTableUpdate timeTableUpdate)
+        public static void MapToEntity(TimeTableUpdate timeTableUpdate, TimeTable timeTable)
         {
-            return new()
             {
-                NoOfDay = timeTableUpdate.NoOfDay,
-                StartTime = timeTableUpdate.StartTime,
-                EndTime = timeTableUpdate.EndTime
+                timeTable.NoOfDay = timeTableUpdate.NoOfDay;
+                timeTable.StartTime = timeTableUpdate.StartTime;
+                timeTable.EndTime = timeTableUpdate.EndTime;
             };
         }
     }

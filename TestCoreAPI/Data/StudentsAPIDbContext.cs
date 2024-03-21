@@ -36,6 +36,7 @@ namespace TestCoreApi.Data
                     PinCode = "360001",
                     IsAdmin = true
                 });
+           
         }
 
     }

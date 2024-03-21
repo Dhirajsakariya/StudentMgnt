@@ -82,6 +82,8 @@ namespace TestCoreApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SubjectId");
+
                     b.ToTable("AdminTeachers");
 
                     b.HasData(

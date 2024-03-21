@@ -39,17 +39,16 @@ namespace TestCoreApi.Mapper
             };
         }
 
-        public static Family MapToEntity(FamilyUpdate familyUpdate)
+        public static void MapToEntity(FamilyUpdate familyUpdate, Family family)
         {
-            return new()
             {
-                Relation = familyUpdate.Relation,
-                Name = familyUpdate.Name,
-                Email = familyUpdate.Email,
-                Occupation = familyUpdate.Occupation,
-                Gender = familyUpdate.Gender,
-                MobileNumber = familyUpdate.MobileNumber,
-            };
+                family.Relation = familyUpdate.Relation;
+                family.Name = familyUpdate.Name;
+                family.Email = familyUpdate.Email;
+                family.Occupation = familyUpdate.Occupation;
+                family.Gender = familyUpdate.Gender;
+                family.MobileNumber = familyUpdate.MobileNumber;
+            }
 
         }
 

@@ -75,7 +75,7 @@ namespace TestCoreApi.Controllers
                 }
                 
 
-                SubjectMapper.MapToEntity(subjectUpdate);
+                SubjectMapper.MapToEntity(subjectUpdate, subject);
 
                 
 

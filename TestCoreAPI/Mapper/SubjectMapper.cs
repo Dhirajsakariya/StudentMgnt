@@ -27,12 +27,11 @@ namespace TestCoreApi.Mapper
                 StandardId = subject.StandardId,
             };
         }
-        public static SubjectDto MapToEntity(SubjectUpdate subjectUpdate)
+        public static void MapToEntity(SubjectUpdate subjectUpdate, Subject subject)
         {
-            return new()
             {
-                Name = subjectUpdate.Name,
-            };
+                subject.Name = subjectUpdate.Name;
+            }
         }
     }
 }

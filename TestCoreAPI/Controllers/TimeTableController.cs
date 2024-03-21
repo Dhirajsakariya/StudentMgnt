@@ -73,7 +73,7 @@ namespace TestCoreApi.Controllers
                     return NotFound();
                 }
 
-                TimeTableMapper.MapToEntity(timeTableUpdate);
+                TimeTableMapper.MapToEntity(timeTableUpdate, timeTable);
                 dbContext.Entry(timeTable).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
                 return Ok(timeTableUpdate);

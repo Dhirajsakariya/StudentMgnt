@@ -53,23 +53,22 @@ namespace TestCoreApi.Mapper
             };
         }
 
-        public static AdminTeacher MapToEntity(AdminTeacherUpdate adminTeacherUpdate)
+        public static void MapToEntity(AdminTeacherUpdate adminTeacherUpdate, AdminTeacher adminTeacher)
         {
-            return new()
             {
-                Name = adminTeacherUpdate.Name,
-                Email = adminTeacherUpdate.Email,
-                Password = adminTeacherUpdate.Password,
-                Gender = adminTeacherUpdate.Gender,
-                BirthDate = adminTeacherUpdate.BirthDate,
-                MobileNumber = adminTeacherUpdate.MobileNumber,
-                JoinDate = adminTeacherUpdate.JoinDate,
-                Address = adminTeacherUpdate.Address,
-                City = adminTeacherUpdate.City,
-                District = adminTeacherUpdate.District,
-                State = adminTeacherUpdate.State,
-                PinCode = adminTeacherUpdate.PinCode,
-                IsAdmin = adminTeacherUpdate.IsAdmin,
+                adminTeacher.Name = adminTeacherUpdate.Name;
+                adminTeacher.Email = adminTeacherUpdate.Email;
+                adminTeacher.Password = adminTeacherUpdate.Password;
+                adminTeacher.Gender = adminTeacherUpdate.Gender;
+                adminTeacher.BirthDate = adminTeacherUpdate.BirthDate;
+                adminTeacher.MobileNumber = adminTeacherUpdate.MobileNumber;
+                adminTeacher.JoinDate = adminTeacherUpdate.JoinDate;
+                adminTeacher.Address = adminTeacherUpdate.Address;
+                adminTeacher.City = adminTeacherUpdate.City;
+                adminTeacher.District = adminTeacherUpdate.District;
+                adminTeacher.State = adminTeacherUpdate.State;
+                adminTeacher.PinCode = adminTeacherUpdate.PinCode;
+                adminTeacher.IsAdmin = adminTeacherUpdate.IsAdmin;
             };
 
         }

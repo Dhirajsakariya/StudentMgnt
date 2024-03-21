@@ -77,7 +77,7 @@ namespace TestCoreApi.Controllers
                     return NotFound();
                 }
 
-                FamilyMapper.MapToEntity(familyUpdate);
+                FamilyMapper.MapToEntity(familyUpdate, family);
                 dbContext.Entry(family).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
                 return Ok(familyUpdate);
