@@ -5,6 +5,7 @@ namespace TestCoreApi.Models
     public class Student 
     {
         public Guid Id { get; set; }
+        public string GrNo { get; set; }
         public int RollNo {  get; set; } 
         public required string Name { get; set; }
         public required string Email { get; set; }

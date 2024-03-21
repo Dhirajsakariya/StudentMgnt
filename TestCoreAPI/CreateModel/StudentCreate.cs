@@ -5,6 +5,7 @@ namespace TestCoreApi.CreateModel
     [NotMapped]
     public class StudentCreate
     { 
+        public string GrNo {  get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

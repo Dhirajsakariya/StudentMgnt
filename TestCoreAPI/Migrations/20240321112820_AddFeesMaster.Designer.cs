@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestCoreApi.Data;
 
@@ -11,9 +12,11 @@ using TestCoreApi.Data;
 namespace TestCoreApi.Migrations
 {
     [DbContext(typeof(StudentsAPIDbContext))]
-    partial class StudentsAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240321112820_AddFeesMaster")]
+    partial class AddFeesMaster
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

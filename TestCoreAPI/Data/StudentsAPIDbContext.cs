@@ -15,6 +15,7 @@ namespace TestCoreApi.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<TimeTable> TimeTables { get; set; }
+        public DbSet<FeesMaster> FeesMasters { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
