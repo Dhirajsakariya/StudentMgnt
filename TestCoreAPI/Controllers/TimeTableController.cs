@@ -25,6 +25,20 @@ namespace TestCoreApi.Controllers
             return Ok(await dbContext.TimeTables.ToListAsync());
         }
 
+        [HttpGet]
+        [Route("GetTimeTable{id}")]
+        public async Task<ActionResult<TimeTableDto>> GetTimeTable(Guid id)
+        {
+            var timeTable = await dbContext.TimeTables.FindAsync(id);
+
+            if (timeTable == null)
+            {
+                return NotFound();
+            }
+
+            return TimeTableMapper.MapToDto(timeTable);
+        }
+
         [HttpPost]
         [Route("PostTimeTable")]
         public async Task<ActionResult> PostTimeTable(TimeTableCreate timeTableCreate)
