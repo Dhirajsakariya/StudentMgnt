@@ -6,6 +6,7 @@ using TestCoreApi.Data;
 using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Controllers
 {
@@ -76,7 +77,7 @@ namespace TestCoreApi.Controllers
 
         [HttpPut]
         [Route("PutStudent{id}")]
-        public async Task<ActionResult> PutStudent(Guid id, StudentDto studentDto)
+        public async Task<ActionResult> PutStudent(Guid id, StudentUpdate studentUpdate)
         {
             try
             {
@@ -87,25 +88,10 @@ namespace TestCoreApi.Controllers
                     return NotFound();
                 }
 
-                student.RollNo = studentDto.RollNo;
-                student.Name = studentDto.Name;
-                student.Email = studentDto.Email;
-                student.Password = studentDto.Password;
-                student.Gender = studentDto.Gender;
-                student.MobileNumber = studentDto.MobileNumber;
-                student.BirthDate = studentDto.BirthDate;
-                student.BloodGroup = studentDto.BloodGroup;
-                student.Address = studentDto.Address;
-                student.City = studentDto.City;
-                student.District = studentDto.District;
-                student.State = studentDto.State;
-                student.StandardId = studentDto.StandardId;
-
-
+                StudentMapper.MapToEntity(studentUpdate, student);
                 dbContext.Entry(student).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
-                return Ok(student);
-
+                return Ok(studentUpdate);
             }
             catch (Exception ex)
             {

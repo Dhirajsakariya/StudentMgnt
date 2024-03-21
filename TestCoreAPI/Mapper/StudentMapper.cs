@@ -1,6 +1,7 @@
 ﻿using TestCoreApi.CreateModel;
 using TestCoreApi.Dtos;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Mapper
 {
@@ -49,21 +50,21 @@ namespace TestCoreApi.Mapper
             };
         }
 
-        public static void MapToEntity(StudentDto studentDto, Student student)
+        public static void MapToEntity(StudentUpdate studentUpdate, Student student)
         {
-            student.Name = studentDto.Name;
-            student.Email = studentDto.Email;
-            student.Password = studentDto.Password;
-            student.Gender = studentDto.Gender;
-            student.BirthDate = studentDto.BirthDate;
-            student.MobileNumber = studentDto.MobileNumber;
-            student.BloodGroup = studentDto.BloodGroup;
-            student.JoinDate = studentDto.JoinDate;
-            student.Address = studentDto.Address;
-            student.City = studentDto.City;
-            student.District = studentDto.District;
-            student.State = studentDto.State;
-            student.PinCode = studentDto.PinCode;
+            student.Name = studentUpdate.Name;
+            student.Email = studentUpdate.Email;
+            student.Password = studentUpdate.Password;
+            student.Gender = studentUpdate.Gender;
+            student.BirthDate = studentUpdate.BirthDate;
+            student.MobileNumber = studentUpdate.MobileNumber;
+            student.BloodGroup = studentUpdate.BloodGroup;
+            student.JoinDate = studentUpdate.JoinDate;
+            student.Address = studentUpdate.Address;
+            student.City = studentUpdate.City;
+            student.District = studentUpdate.District;
+            student.State = studentUpdate.State;
+            student.PinCode = studentUpdate.PinCode;
             // Add other properties as needed
         }
     }
