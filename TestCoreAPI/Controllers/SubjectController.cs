@@ -22,9 +22,24 @@ namespace TestCoreApi.Controllers
 
         [HttpGet]
         [Route("GetSubjects")]
-        public async Task<ActionResult<AdminTeacher>> GetSubjects()
+        public async Task<ActionResult<IEnumerable<SubjectDto>>> GetSubjects()
         {
-            return Ok(await dbContext.Subjects.ToListAsync());
+            var subject = await dbContext.Subjects.ToListAsync();
+            return subject.Select(s => SubjectMapper.MapToDto(s)).ToList();
+        }
+
+        [HttpGet]
+        [Route("GetSubject{id}")]
+        public async Task<ActionResult<SubjectDto>> GetSubject(Guid id)
+        {
+            var subject = await dbContext.Subjects.FindAsync(id);
+
+            if (subject == null)
+            {
+                return NotFound();
+            }
+
+            return SubjectMapper.MapToDto(subject);
         }
 
         [HttpPost]
@@ -57,8 +72,14 @@ namespace TestCoreApi.Controllers
                 {
                     return NotFound();
                 }
-                subject.Name = subjectDto.Name;
-                
+                //subject.Name = subjectDto.Name;
+                //SubjectMapper.MapToDto(subjectDto);
+
+                /*var updatedSubject =*/ SubjectMapper.MapToEntity(subjectDto);
+
+                //subject.Name = updatedSubject.Name;
+                //subject.StandardId = updatedSubject.StandardId;
+
                 dbContext.Entry(subject).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
                 return Ok(subject);
