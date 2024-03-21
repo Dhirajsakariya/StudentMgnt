@@ -3,6 +3,7 @@ using TestCoreApi.Dtos;
 using System.Net.Http.Headers;
 
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Mapper
 {
@@ -49,6 +50,26 @@ namespace TestCoreApi.Mapper
                 PinCode = adminTeacher.PinCode,
                 IsAdmin = adminTeacher.IsAdmin,
                 SubjectId = adminTeacher.SubjectId,
+            };
+        }
+
+        public static AdminTeacher MapToEntity(AdminTeacherUpdate adminTeacherUpdate)
+        {
+            return new()
+            {
+                Name = adminTeacherUpdate.Name,
+                Email = adminTeacherUpdate.Email,
+                Password = adminTeacherUpdate.Password,
+                Gender = adminTeacherUpdate.Gender,
+                BirthDate = adminTeacherUpdate.BirthDate,
+                MobileNumber = adminTeacherUpdate.MobileNumber,
+                JoinDate = adminTeacherUpdate.JoinDate,
+                Address = adminTeacherUpdate.Address,
+                City = adminTeacherUpdate.City,
+                District = adminTeacherUpdate.District,
+                State = adminTeacherUpdate.State,
+                PinCode = adminTeacherUpdate.PinCode,
+                IsAdmin = adminTeacherUpdate.IsAdmin,
             };
 
         }

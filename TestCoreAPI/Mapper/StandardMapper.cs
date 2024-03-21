@@ -1,6 +1,7 @@
 ﻿using TestCoreApi.CreateModel;
 using TestCoreApi.Dtos;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Mapper
 {
@@ -22,6 +23,15 @@ namespace TestCoreApi.Mapper
                 Id = standard.Id,
                 StandardNumber = standard.StandardNumber,
                 Section = standard.Section,
+            };
+
+        }
+        public static Standard MapToEntity(StandardUpdate standardUpdate)
+        {
+            return new()
+            {
+                StandardNumber = standardUpdate.StandardNumber,
+                Section = standardUpdate.Section,
             };
 
         }

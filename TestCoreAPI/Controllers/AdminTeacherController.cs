@@ -7,6 +7,7 @@ using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
 using TestCoreApi.RequestModel;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Controllers
 {
@@ -55,8 +56,6 @@ namespace TestCoreApi.Controllers
                 }
                 AdminTeacher adminteacher = AdminTeacherMapper.Map(adminteachercreate);
                 adminteacher.Id = Guid.NewGuid();
-                //adminteacher.createdat = adminteacher.lastmodifiedat = datetime.now ;
-                //adminteacher.createdby = adminteacher.modifiedby =  adminteacher.id;
                 await dbContext.AdminTeachers.AddAsync(adminteacher);
                 await dbContext.SaveChangesAsync();
 
@@ -70,7 +69,7 @@ namespace TestCoreApi.Controllers
 
         [HttpPut]
         [Route("PutAdminTeachers{id}")]
-        public async Task<ActionResult> PutAdminTeacher(Guid id,AdminTeacherDto adminTeacherDto)
+        public async Task<ActionResult> PutAdminTeacher(Guid id,AdminTeacherUpdate adminTeacherUpdate) 
         {
             try
             {
@@ -80,23 +79,11 @@ namespace TestCoreApi.Controllers
                 {
                     return NotFound();
                 }
-                adminTeacher.Name = adminTeacherDto.Name;
-                adminTeacher.Email = adminTeacherDto.Email;
-                adminTeacher.Password = adminTeacherDto.Password;
-                adminTeacher.Gender = adminTeacherDto.Gender;
-                adminTeacher.BirthDate = adminTeacherDto.BirthDate;
-                adminTeacher.MobileNumber = adminTeacherDto.MobileNumber;
-                adminTeacher.JoinDate = adminTeacherDto.JoinDate;
-                adminTeacher.Address = adminTeacherDto.Address;
-                adminTeacher.City = adminTeacherDto.City;
-                adminTeacher.District = adminTeacherDto.District;
-                adminTeacher.State = adminTeacherDto.State;
-                adminTeacher.PinCode = adminTeacherDto.PinCode;
-                adminTeacher.IsAdmin = adminTeacherDto.IsAdmin;
 
+                AdminTeacherMapper.MapToEntity(adminTeacherUpdate);
                 dbContext.Entry(adminTeacher).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
-                return Ok(adminTeacher);
+                return Ok(adminTeacherUpdate);
 
             }
             catch (Exception ex)
@@ -129,7 +116,7 @@ namespace TestCoreApi.Controllers
             {
                 if(loginRequestModel.Role.ToLower() == "admin")
                 {
-                    var admin = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == loginRequestModel.Email && u.Password == loginRequestModel.Password);
+                    var admin = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == loginRequestModel.Email && u.Password == loginRequestModel.Password && u.IsAdmin == true);
                     {
                         if (admin != null)
                         {
@@ -144,7 +131,7 @@ namespace TestCoreApi.Controllers
                 }
                 else if(loginRequestModel.Role.ToLower() == "teacher")
                 {
-                    var teacher = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == loginRequestModel.Email && u.Password == loginRequestModel.Password);
+                    var teacher = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == loginRequestModel.Email && u.Password == loginRequestModel.Password && u.IsAdmin == false);
                     {
                         if (teacher != null)
                         {
