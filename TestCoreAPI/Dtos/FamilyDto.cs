@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.SignalR;
 using TestCoreApi.Models;
 
 namespace TestCoreApi.Dtos
-{
+{ 
     [NotMapped]
     public class FamilyDto
     {

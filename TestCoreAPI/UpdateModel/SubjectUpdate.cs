@@ -7,4 +7,4 @@ namespace TestCoreApi.UpdateModel
     {
         public string Name { get; set; }
     }
-}
+} 

@@ -59,7 +59,7 @@ namespace TestCoreApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
+             
         [HttpPut]
         [Route("PutTimeTable{id}")]
         public async Task<ActionResult> PutTimeTable(Guid id, TimeTableUpdate timeTableUpdate)

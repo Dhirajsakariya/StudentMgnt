@@ -10,3 +10,4 @@ namespace TestCoreApi.UpdateModel
         public TimeOnly EndTime { get; set; }
     }
 }
+ 

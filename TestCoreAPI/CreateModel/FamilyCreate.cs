@@ -4,7 +4,7 @@ namespace TestCoreApi.CreateModel
 {
     [NotMapped]
     public class FamilyCreate
-    {
+    {   
         public string Relation { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }

@@ -12,7 +12,7 @@ using TestCoreApi.UpdateModel;
 namespace TestCoreApi.Controllers
 {  
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController]  
     public class AdminTeacherController : ControllerBase
     {
         private readonly StudentsAPIDbContext  dbContext;

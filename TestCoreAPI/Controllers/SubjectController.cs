@@ -73,11 +73,8 @@ namespace TestCoreApi.Controllers
                 {
                     return NotFound();
                 }
-                
 
                 SubjectMapper.MapToEntity(subjectUpdate, subject);
-
-                
 
                 dbContext.Entry(subject).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();

@@ -69,7 +69,7 @@ namespace TestCoreApi.Controllers
         public async Task<ActionResult> PutFamily(Guid id, FamilyUpdate familyUpdate)
         {
             try
-            {
+            {  
                 var family = await dbContext.Families.FindAsync(id);
 
                 if (family == null)
