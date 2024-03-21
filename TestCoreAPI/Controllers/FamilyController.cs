@@ -42,8 +42,7 @@ namespace TestCoreApi.Controllers
             return FamilyMapper.MapToDto(family);
         }
 
-
-        
+          
         [HttpPost]
         [Route("PostFamily")]
         public async Task<ActionResult> PostFamily(FamilyCreate familycreate)

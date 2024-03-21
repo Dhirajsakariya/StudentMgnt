@@ -21,7 +21,7 @@ namespace TestCoreApi.Mapper
                 StudentId = familyCreate.StudentId,
             };
       }
-
+          
         public static FamilyDto MapToDto(Family family)
         {
             return new()
@@ -36,7 +36,7 @@ namespace TestCoreApi.Mapper
                 StudentId = family.StudentId,
 
             };
-        }
+        }   
 
      }
 }
