@@ -6,7 +6,7 @@ using TestCoreApi.Models;
 using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Mapper
-{
+{  
     public class AdminTeacherMapper
     {
         public static AdminTeacher Map(AdminTeacherCreate adminTeacherCreate)

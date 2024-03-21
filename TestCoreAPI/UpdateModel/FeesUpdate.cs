@@ -4,7 +4,7 @@ namespace TestCoreApi.UpdateModel
 {
     [NotMapped]
     public class FeesUpdate
-    {
+    {  
         public long Amount { get; set; }
 
     }

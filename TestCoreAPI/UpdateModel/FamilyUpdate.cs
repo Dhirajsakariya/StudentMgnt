@@ -4,7 +4,7 @@ namespace TestCoreApi.UpdateModel
 {
     [NotMapped]
     public class FamilyUpdate
-    {
+    {   
         public string Relation { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }

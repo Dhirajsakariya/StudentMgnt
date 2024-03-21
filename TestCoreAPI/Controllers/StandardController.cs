@@ -7,7 +7,7 @@ using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
 using TestCoreApi.UpdateModel;
-
+  
 namespace TestCoreApi.Controllers
 {  
     [Route("api/[controller]")]

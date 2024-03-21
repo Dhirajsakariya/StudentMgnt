@@ -10,7 +10,7 @@ using TestCoreApi.RequestModel;
 using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Controllers
-{
+{  
     [Route("api/[controller]")]
     [ApiController]
     public class AdminTeacherController : ControllerBase
