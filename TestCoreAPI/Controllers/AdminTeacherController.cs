@@ -30,6 +30,22 @@ namespace TestCoreApi.Controllers
         }
 
         [HttpGet]
+        [Route("GetTeachers")]
+        public async Task<ActionResult<IEnumerable<AdminTeacherDto>>> GetTeachers()
+        {
+            var adminTeachers = await dbContext.AdminTeachers.Where(x=>x.IsAdmin!=true).ToListAsync();
+            return adminTeachers.Select(s => AdminTeacherMapper.MapToDto(s)).ToList();
+        }
+
+        [HttpGet]
+        [Route("GetAdmins")]
+        public async Task<ActionResult<IEnumerable<AdminTeacherDto>>> GetAdmins()
+        {
+            var adminTeachers = await dbContext.AdminTeachers.Where(x => x.IsAdmin == true).ToListAsync();
+            return adminTeachers.Select(s => AdminTeacherMapper.MapToDto(s)).ToList();
+        }
+
+        [HttpGet]
         [Route("GetAdminTeacher{id}")]
         public async Task<ActionResult<AdminTeacherDto>> GetAdminTeacher(Guid id)
         {
