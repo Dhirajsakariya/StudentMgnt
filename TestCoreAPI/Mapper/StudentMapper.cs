@@ -1,6 +1,7 @@
 ﻿using TestCoreApi.CreateModel;
 using TestCoreApi.Dtos;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Mapper
 {
@@ -10,7 +11,6 @@ namespace TestCoreApi.Mapper
         {
             return new()
             {
-                GrNo=studentCreate.GrNo,
                 Name = studentCreate.Name,
                 Email = studentCreate.Email,
                 Password = studentCreate.Password,
@@ -25,14 +25,15 @@ namespace TestCoreApi.Mapper
                 State = studentCreate.State,
                 PinCode = studentCreate.PinCode,
                 StandardId = studentCreate.StandardId,
+                
             };
         }
         public static StudentDto MapToDto(Student student)
         {
             return new()
             {
-                GrNo=student.GrNo,
                 Id = student.Id,
+                RollNo =student.RollNo,
                 Name = student.Name,
                 Email = student.Email,
                 Password = student.Password,
@@ -51,22 +52,23 @@ namespace TestCoreApi.Mapper
             };
         }
 
-        public static void MapToEntity(StudentDto studentDto, Student student)
+        public static void MapToEntity(StudentUpdate studentUpdate, Student student)
         {
-            studentDto.GrNo = studentDto.GrNo;
-            student.Name = studentDto.Name;
-            student.Email = studentDto.Email;
-            student.Password = studentDto.Password;
-            student.Gender = studentDto.Gender;
-            student.BirthDate = studentDto.BirthDate;
-            student.MobileNumber = studentDto.MobileNumber;
-            student.BloodGroup = studentDto.BloodGroup;
-            student.JoinDate = studentDto.JoinDate;
-            student.Address = studentDto.Address;
-            student.City = studentDto.City;
-            student.District = studentDto.District;
-            student.State = studentDto.State;
-            student.PinCode = studentDto.PinCode;
+            student.Name = studentUpdate.Name;
+            student.Email = studentUpdate.Email;
+            student.Password = studentUpdate.Password;
+            student.Gender = studentUpdate.Gender;
+            student.BirthDate = studentUpdate.BirthDate;
+            student.MobileNumber = studentUpdate.MobileNumber;
+            student.BloodGroup = studentUpdate.BloodGroup;
+            student.JoinDate = studentUpdate.JoinDate;
+            student.Address = studentUpdate.Address;
+            student.City = studentUpdate.City;  
+            student.District = studentUpdate.District;
+            student.State = studentUpdate.State;
+            student.PinCode = studentUpdate.PinCode;
+            student.StandardId = studentUpdate.StandardId;
+
             // Add other properties as needed
         }
     }

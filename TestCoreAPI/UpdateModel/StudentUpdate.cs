@@ -18,5 +18,6 @@ namespace TestCoreApi.UpdateModel
         public string District { get; set; }
         public string State { get; set; }
         public required string PinCode { get; set; }
+        public Guid StandardId { get; set; }
     }
 }
