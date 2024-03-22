@@ -48,6 +48,20 @@ namespace TestCoreApi.Controllers
             try
             {
                 TimeTable timetable = TimeTableMapper.Map(timeTableCreate);
+
+                var standard = dbContext.Standards.Where(x => x.StandardNumber == timeTableCreate.StandardNumber && x.Section.ToLower() == timeTableCreate.Section.ToLower()).FirstOrDefault();
+                if(standard == null)
+                {
+                    return BadRequest("Invalid StandardId. Standard with the provided Id does not exist.");
+                }
+                timetable.StandardId = standard.Id;
+
+                var subject = dbContext.Subjects.Where(x => x.Name.ToLower() == timeTableCreate.SubjectName.ToLower()).FirstOrDefault();
+                if(subject == null)
+                {
+                    return BadRequest("Invalid SubjectId. Standard with the provided Id does not exist.");
+                }
+                timetable.SubjectId = subject.Id;
                 timetable.Id = Guid.NewGuid();
                 await dbContext.TimeTables.AddAsync(timetable);
                 await dbContext.SaveChangesAsync();

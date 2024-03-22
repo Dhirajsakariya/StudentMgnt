@@ -9,7 +9,9 @@ namespace TestCoreApi.CreateModel
         public int NoOfDay { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
-        public Guid SubjectId { get; set; }
-        public Guid StandardId { get; set; }
+        public string SubjectName { get; set; }
+        public int StandardNumber { get; set; }
+        public string Section { get; set; }
+
     }
 }
