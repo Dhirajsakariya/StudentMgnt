@@ -20,6 +20,7 @@ namespace TestCoreApi.CreateModel
         public string PinCode { get; set; }
         public bool IsAdmin { get; set; } = false;
         public Guid SubjectId { get; set; }
+        public Guid StandardId { get; set; }
           
     }
 }

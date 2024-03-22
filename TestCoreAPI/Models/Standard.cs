@@ -11,5 +11,6 @@
 
         public virtual ICollection<Student> Students {  get; set; }
 
+        public virtual ICollection<AdminTeacher> AdminTeachers { get; set;}
     }
 }

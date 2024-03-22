@@ -22,5 +22,9 @@ namespace TestCoreApi.Models
         public Guid? SubjectId { get; set; }
         [ForeignKey(nameof(SubjectId))]
         public virtual Subject Subjects { get; set; }
+
+        public Guid? StandardId { get; set; }
+        [ForeignKey(nameof(StandardId))]
+        public virtual Standard Standards { get; set; }
     }
 }
