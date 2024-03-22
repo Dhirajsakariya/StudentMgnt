@@ -6,6 +6,7 @@ using TestCoreApi.Data;
 using TestCoreApi.Dtos;
 using TestCoreApi.Mapper;
 using TestCoreApi.Models;
+using TestCoreApi.UpdateModel;
 
 namespace TestCoreApi.Controllers
 {
@@ -62,11 +63,14 @@ namespace TestCoreApi.Controllers
 
                 Student student = StudentMapper.Map(studentCreate);
                 student.RollNo = maxRollNoForStandard + 1; // Generate a new RollNo based on the StandardId
+                student.GrNo = standard.StandardNumber+"-"+standard.Section+"-"+student.RollNo;
 
                 await dbContext.Students.AddAsync(student);
                 await dbContext.SaveChangesAsync();
 
-                return Ok();
+                var studentDto =  StudentMapper.MapToDto(student);
+
+                return Ok(studentDto);
             }
             catch (Exception ex)
             {
@@ -76,7 +80,7 @@ namespace TestCoreApi.Controllers
 
         [HttpPut]
         [Route("PutStudent{id}")]
-        public async Task<ActionResult> PutStudent(Guid id, StudentDto studentDto)
+        public async Task<ActionResult> PutStudent(Guid id, StudentUpdate studentUpdate)
         {
             try
             {
@@ -87,21 +91,7 @@ namespace TestCoreApi.Controllers
                     return NotFound();
                 }
 
-                student.RollNo = studentDto.RollNo;
-                student.Name = studentDto.Name;
-                student.Email = studentDto.Email;
-                student.Password = studentDto.Password;
-                student.Gender = studentDto.Gender;
-                student.MobileNumber = studentDto.MobileNumber;
-                student.BirthDate = studentDto.BirthDate;
-                student.BloodGroup = studentDto.BloodGroup;
-                student.Address = studentDto.Address;
-                student.City = studentDto.City;
-                student.District = studentDto.District;
-                student.State = studentDto.State;
-                student.StandardId = studentDto.StandardId;
-
-
+                StudentMapper.MapToEntity(studentUpdate, student);
                 dbContext.Entry(student).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
                 return Ok(student);
@@ -128,30 +118,6 @@ namespace TestCoreApi.Controllers
             }
             return NotFound();
 
-        }
-
-        [HttpGet]
-        [Route("IsLogin")]
-        public async Task<IActionResult> IsLogin(string email)
-        {
-            try
-            {
-                var student = await dbContext.Students.FirstOrDefaultAsync(u => u.Email == email);
-                {
-                    if (student != null)
-                    {
-                        return Ok(new { email = student.Email, password = student.Password});
-                    }
-                    else
-                    {
-                        return NotFound("User not found!");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
         }
     }
 }
