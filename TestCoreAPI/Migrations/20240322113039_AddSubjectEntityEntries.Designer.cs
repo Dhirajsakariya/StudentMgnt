@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestCoreApi.Data;
 
@@ -11,9 +12,11 @@ using TestCoreApi.Data;
 namespace TestCoreApi.Migrations
 {
     [DbContext(typeof(StudentsAPIDbContext))]
-    partial class StudentsAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240322113039_AddSubjectEntityEntries")]
+    partial class AddSubjectEntityEntries
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,7 +347,7 @@ namespace TestCoreApi.Migrations
                         new
                         {
                             Id = new Guid("8c2c6493-7967-450c-aa4b-1e1b08470dca"),
-                            Name = "Gujarati",
+                            Name = "Gujrati",
                             StandardId = new Guid("a8283465-6ae7-43d6-8eca-09c02ab12b4c")
                         },
                         new
@@ -386,7 +389,7 @@ namespace TestCoreApi.Migrations
                         new
                         {
                             Id = new Guid("08965a20-5133-4973-8abe-880ee4c9d459"),
-                            Name = "Gujarati",
+                            Name = "Gujrati",
                             StandardId = new Guid("f82ba9d1-5d85-4c20-bca0-142dd07e1316")
                         },
                         new
@@ -428,7 +431,7 @@ namespace TestCoreApi.Migrations
                         new
                         {
                             Id = new Guid("0416e0ea-3c21-4ec8-95d4-3fb5750409c8"),
-                            Name = "Gujarati",
+                            Name = "Gujrati",
                             StandardId = new Guid("49716b8a-aca6-4ce9-9a74-199ce2a5af40")
                         },
                         new
@@ -470,7 +473,7 @@ namespace TestCoreApi.Migrations
                         new
                         {
                             Id = new Guid("932978e9-6ebe-46f0-8440-bbc08d4419f4"),
-                            Name = "Gujarati",
+                            Name = "Gujrati",
                             StandardId = new Guid("3241a142-031d-41e4-a1ba-239efc8559f7")
                         },
                         new
@@ -512,7 +515,7 @@ namespace TestCoreApi.Migrations
                         new
                         {
                             Id = new Guid("45caf56f-3a19-4ffd-b440-58efe9636348"),
-                            Name = "Gujarati",
+                            Name = "Gujrati",
                             StandardId = new Guid("1ecc5761-7ddb-4ef7-8b16-28c91845a386")
                         },
                         new
@@ -554,7 +557,7 @@ namespace TestCoreApi.Migrations
                         new
                         {
                             Id = new Guid("1c932ef0-6e4e-4745-9887-b73148594b40"),
-                            Name = "Gujarati",
+                            Name = "Gujrati",
                             StandardId = new Guid("b880223f-458f-4e5f-a012-313119be3724")
                         },
                         new

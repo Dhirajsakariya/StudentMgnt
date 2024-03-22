@@ -50,6 +50,7 @@ namespace TestCoreApi.Mapper
                 PinCode = adminTeacher.PinCode,
                 IsAdmin = adminTeacher.IsAdmin,
                 SubjectId = adminTeacher.SubjectId,
+                StandardId = adminTeacher.StandardId,
             };
         }
 
