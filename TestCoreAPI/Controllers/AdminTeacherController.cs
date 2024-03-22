@@ -164,5 +164,22 @@ namespace TestCoreApi.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        [HttpPut]
+        [Route("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(PasswordRequestModel changePassword)
+        {
+            var existingUser = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == changePassword.Email && u.BirthDate == changePassword.BirthDate);
+
+            if (existingUser == null)
+            {
+                return Ok("Email or BirthDate not Exist");
+            }
+
+            existingUser.Password = changePassword.Password;
+            await dbContext.SaveChangesAsync();
+
+            return Ok("Password updated successfully");
+        }
+
     }
 }
