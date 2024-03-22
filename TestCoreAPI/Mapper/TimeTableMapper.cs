@@ -14,8 +14,6 @@ namespace TestCoreApi.Mapper
                 NoOfDay =  timeTableCreate.NoOfDay,
                 StartTime = timeTableCreate.StartTime,
                 EndTime = timeTableCreate.EndTime,
-                SubjectId = timeTableCreate.SubjectId,
-                StandardId = timeTableCreate.StandardId
             };
         }  
         public static TimeTableDto MapToDto(TimeTable timeTable)

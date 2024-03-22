@@ -29,6 +29,7 @@ namespace TestCoreApi.Controllers
             return standard.Select(s => StandardMapper.MapToDto(s)).ToList();
         }
 
+
         [HttpGet]
         [Route("GetStandard{id}")]
         public async Task<ActionResult<StandardDto>> GetAdminTeacher(Guid id)
