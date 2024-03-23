@@ -6,7 +6,7 @@ namespace TestCoreApi.Dtos
     public class FeesDto
     { 
         public Guid Id { get; set; }
-        public string? FeeFrequencies { get; set; }
+        public string? FeeFrequency { get; set; }
         public long Amount { get; set; }
 
         public Guid StudentId { get; set; }
