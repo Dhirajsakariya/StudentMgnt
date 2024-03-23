@@ -56,6 +56,12 @@ namespace TestCoreApi.Controllers
                     return BadRequest("Invalid StandardId. Standard with the provided Id does not exist.");
                 }
 
+                var Student = await dbContext.Students.Where(u => u.Email == studentCreate.Email).FirstOrDefaultAsync();
+                if (Student != null)
+                {
+                    return Ok("email already exists");
+                }
+
                 // Get the maximum RollNo for the given StandardId
                 int maxRollNoForStandard = await dbContext.Students
                     .Where(s => s.StandardId == studentCreate.StandardId)
@@ -94,7 +100,10 @@ namespace TestCoreApi.Controllers
                 StudentMapper.MapToEntity(studentUpdate, student);
                 dbContext.Entry(student).State = EntityState.Modified;
                 await dbContext.SaveChangesAsync();
-                return Ok(student);
+
+                var studentDto = StudentMapper.MapToDto(student);
+
+                return Ok(studentDto);
 
             }
             catch (Exception ex)
