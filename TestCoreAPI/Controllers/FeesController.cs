@@ -35,17 +35,17 @@ namespace TestCoreApi.Controllers
                 fees.Id = Guid.NewGuid();
                 
                 // Check if FeeFrequencies is provided and not null or empty
-                if (string.IsNullOrWhiteSpace(feesCreate.FeeFrequencies))
+                if (string.IsNullOrWhiteSpace(feesCreate.FeeFrequency))
                 {
                     return BadRequest("FeeFrequencies is required.");
                 }
 
                 // Set the fee amount based on the selected fee frequency
-                if (feesCreate.FeeFrequencies.Equals("Quaterly", StringComparison.OrdinalIgnoreCase))
+                if (feesCreate.FeeFrequency.Equals("Quaterly", StringComparison.OrdinalIgnoreCase))
                 {
                     fees.Amount = CalculateQuaterlyAmount(feesCreate.Amount);
                 }
-                else if (feesCreate.FeeFrequencies.Equals("Annually", StringComparison.OrdinalIgnoreCase))
+                else if (feesCreate.FeeFrequency.Equals("Annually", StringComparison.OrdinalIgnoreCase))
                 {
                     fees.Amount = CalculateAnnuallyAmount(feesCreate.Amount);
                 }
@@ -57,7 +57,9 @@ namespace TestCoreApi.Controllers
                 await dbContext.Fees.AddAsync(fees);
                 await dbContext.SaveChangesAsync();
 
-                return Ok();
+                var FeesDto = FeesMapper.MapToDto(fees);
+
+                return Ok(FeesDto);
             }
             catch (Exception ex)
             {
@@ -133,7 +135,7 @@ namespace TestCoreApi.Controllers
             }
         }
 
-        /*
+        
         [HttpPut]
         [Route("PutFees{id}")]
         public async Task<ActionResult> PutFees(Guid id, FeesDto feesDto)
@@ -173,7 +175,7 @@ namespace TestCoreApi.Controllers
                 return Ok();
             }
             return NotFound();
-        }*/
+        }
     }
 }
 

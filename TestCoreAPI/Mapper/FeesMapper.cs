@@ -10,7 +10,7 @@ namespace TestCoreApi.Mapper
         {
             return new()
             {
-                FeeFrequency=feesCreate.FeeFrequencies,
+                FeeFrequency=feesCreate.FeeFrequency,
                 Amount = feesCreate.Amount,
                 StudentId = feesCreate.StudentId,
             };
@@ -21,7 +21,7 @@ namespace TestCoreApi.Mapper
             return new()
             {
                 Id = fees.Id,
-                FeeFrequencies= fees.FeeFrequency, 
+                FeeFrequency = fees.FeeFrequency, 
                 Amount = fees.Amount,
                 StudentId = fees.StudentId,
             };

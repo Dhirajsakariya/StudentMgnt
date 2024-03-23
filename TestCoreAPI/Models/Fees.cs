@@ -5,7 +5,7 @@ namespace TestCoreApi.Models
     public class Fees 
     {
         public Guid Id { get; set; }
-        public  string? FeeFrequencies { get; set; }
+        public  string? FeeFrequency { get; set; }
        
         public long  Amount { get; set; }
 
