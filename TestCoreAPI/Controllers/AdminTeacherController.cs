@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Xml;
 using TestCoreApi.CreateModel;
 using TestCoreApi.Data;
 using TestCoreApi.Dtos;
@@ -69,8 +70,21 @@ namespace TestCoreApi.Controllers
                 if (existinguser != null)
                 {
                     return Ok("email already exists");
-                }
+                }  
                 AdminTeacher adminteacher = AdminTeacherMapper.Map(adminteachercreate);
+                var standard = dbContext.Standards.Where(x => x.StandardNumber == adminteachercreate.StandardNumber && x.Section.ToLower() == adminteachercreate.Section.ToLower()).FirstOrDefault();
+                if (standard == null)
+                {
+                    return BadRequest("Invalid StandardId. Standard with the provided Id does not exist.");
+                }
+                adminteacher.StandardId = standard.Id;
+
+                var subject = dbContext.Subjects.Where(x => x.Name.ToLower() == adminteachercreate.SubjectName.ToLower()).FirstOrDefault();
+                if (subject == null)
+                {
+                    return BadRequest("Invalid SubjectId. Standard with the provided Id does not exist.");
+                }
+                adminteacher.SubjectId = subject.Id;
                 adminteacher.Id = Guid.NewGuid();
                 await dbContext.AdminTeachers.AddAsync(adminteacher);
                 await dbContext.SaveChangesAsync();
