@@ -198,11 +198,16 @@ namespace TestCoreApi.Controllers
         [Route("ChangePassword")]
         public async Task<IActionResult> ChangePassword(PasswordRequestModel changePassword)
         {
-            var existingUser = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == changePassword.Email && u.BirthDate == changePassword.BirthDate);
+            var existingUser = await dbContext.AdminTeachers.FirstOrDefaultAsync(u => u.Email == changePassword.Email);
 
             if (existingUser == null)
             {
-                return Ok("Email or BirthDate not Exist");
+                return Ok("Email not Found");
+            }
+
+            else if (existingUser.BirthDate != changePassword.BirthDate)
+            {
+                return Ok("Incorrect BirthDate");
             }
 
             existingUser.Password = changePassword.Password;
