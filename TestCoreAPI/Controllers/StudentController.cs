@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Xml;
 using TestCoreApi.CreateModel;
 using TestCoreApi.Data;
 using TestCoreApi.Dtos;
@@ -50,7 +51,7 @@ namespace TestCoreApi.Controllers
             try
             {
                 // Check if the provided StandardId exists
-                var standard = await dbContext.Standards.FindAsync(studentCreate.StandardId);
+                var standard = dbContext.Standards.Where(x => x.StandardNumber == studentCreate.StandardNumber && x.Section.ToLower() == studentCreate.Section.ToLower()).FirstOrDefault();
                 if (standard == null)
                 {
                     return BadRequest("Invalid StandardId. Standard with the provided Id does not exist.");
