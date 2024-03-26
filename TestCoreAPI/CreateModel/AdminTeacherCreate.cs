@@ -19,8 +19,8 @@ namespace TestCoreApi.CreateModel
         public string State { get; set; }
         public string PinCode { get; set; }
         public bool IsAdmin { get; set; } = false;
-        public Guid SubjectId { get; set; }
-        public Guid StandardId { get; set; }
-          
+        public string SubjectName { get; set; }
+        public int StandardNumber { get; set; }
+        public string Section { get; set; }  
     }
 }
