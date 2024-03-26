@@ -70,7 +70,7 @@ namespace TestCoreApi.Controllers
                 if (existinguser != null)
                 {
                     return Ok("email already exists");
-                }
+                }  
                 AdminTeacher adminteacher = AdminTeacherMapper.Map(adminteachercreate);
                 var standard = dbContext.Standards.Where(x => x.StandardNumber == adminteachercreate.StandardNumber && x.Section.ToLower() == adminteachercreate.Section.ToLower()).FirstOrDefault();
                 if (standard == null)

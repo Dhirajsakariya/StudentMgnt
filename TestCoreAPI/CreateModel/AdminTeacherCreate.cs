@@ -21,6 +21,6 @@ namespace TestCoreApi.CreateModel
         public bool IsAdmin { get; set; } = false;
         public string SubjectName { get; set; }
         public int StandardNumber { get; set; }
-        public string Section { get; set; }
+        public string Section { get; set; }  
     }
 }
