@@ -150,7 +150,7 @@ namespace TestCoreApi.Controllers
                     {
                         if (admin != null)
                         {
-                            return Ok(new { email = admin.Email, password = admin.Password });
+                            return Ok(new { email = admin.Email, id = admin.Id });
                         }
                         else
                         {
@@ -165,7 +165,7 @@ namespace TestCoreApi.Controllers
                     {
                         if (teacher != null)
                         {
-                            return Ok(new { email = teacher.Email, password = teacher.Password });
+                            return Ok(new { email = teacher.Email, id = teacher.Id });
                         }
                         else
                         {
@@ -179,7 +179,7 @@ namespace TestCoreApi.Controllers
                     {
                         if (student != null)
                         {
-                            return Ok(new { email = student.Email, password = student.Password });
+                            return Ok(new { email = student.Email, id = student.Id });
                         }
                         else
                         {
