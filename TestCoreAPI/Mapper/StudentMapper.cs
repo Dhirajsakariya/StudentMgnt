@@ -24,7 +24,7 @@ namespace TestCoreApi.Mapper
                 District = studentCreate.District,
                 State = studentCreate.State,
                 PinCode = studentCreate.PinCode,
-                StandardId = studentCreate.StandardId,
+                //StandardId = studentCreate.StandardId,
                 
             };
         }

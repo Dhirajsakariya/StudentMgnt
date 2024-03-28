@@ -21,5 +21,7 @@ namespace TestCoreApi.CreateModel
 
         // Add other properties as needed
         public Guid StandardId { get; set; }
+        public int StandardNumber { get; set; }
+        public string Section { get; set; }
     }
 }
