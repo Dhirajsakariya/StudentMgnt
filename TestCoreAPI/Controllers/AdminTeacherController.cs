@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Xml;
@@ -71,7 +71,7 @@ namespace TestCoreApi.Controllers
                 {
                     return Ok("email already exists");
                 }
-                AdminTeacher adminteacher = AdminTeacherMapper.Map(adminteachercreate); AdminTeacher adminteacher = AdminTeacherMapper.Map(adminteachercreate);
+                AdminTeacher adminteacher = AdminTeacherMapper.Map(adminteachercreate);
                 if (adminteachercreate.IsAdmin == true)
                 {
                     adminteacher.StandardId = null;
@@ -93,6 +93,11 @@ namespace TestCoreApi.Controllers
                     }
                     adminteacher.SubjectId = subject.Id;
                 }
+                    adminteacher.Id = Guid.NewGuid();
+                    await dbContext.AdminTeachers.AddAsync(adminteacher);
+                    await dbContext.SaveChangesAsync();
+
+                    return Ok();
                 adminteacher.Id = Guid.NewGuid();
                 await dbContext.AdminTeachers.AddAsync(adminteacher);
                 await dbContext.SaveChangesAsync();
