@@ -43,10 +43,11 @@ namespace TestCoreApi.Controllers
 
         [HttpPost]
         [Route("PostTimeTable")]
-        public async Task<ActionResult> PostTimeTable(List<TimeTableCreate> timeTableCreateList)
+        public async Task<ActionResult> PostTimeTable(TimeTableCreate[] timeTableCreateArray)
         {
             try
             {
+               var  timeTableCreateList = timeTableCreateArray.ToList();
                 foreach (var timeTableCreate in timeTableCreateList)
                 {
 

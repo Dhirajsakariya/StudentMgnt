@@ -43,7 +43,6 @@ namespace TestCoreApi.Controllers
 
             return StudentMapper.MapToDto(student);
         }
-
         [HttpPost]
         [Route("PostStudent")]
         public async Task<ActionResult<StudentDto>> PostStudent(StudentCreate studentCreate)
@@ -51,7 +50,7 @@ namespace TestCoreApi.Controllers
             try
             {
                 // Check if the provided StandardId exists
-                var standard = dbContext.Standards.Where(x => x.StandardNumber == studentCreate.StandardNumber && x.Section.ToLower() == studentCreate.Section.ToLower()).FirstOrDefault();
+                var standard = await dbContext.Standards.Where(x => x.StandardNumber == studentCreate.StandardNumber && x.Section == studentCreate.Section).FirstOrDefaultAsync();
                 if (standard == null)
                 {
                     return BadRequest("Invalid StandardId. Standard with the provided Id does not exist.");
@@ -65,17 +64,18 @@ namespace TestCoreApi.Controllers
 
                 // Get the maximum RollNo for the given StandardId
                 int maxRollNoForStandard = await dbContext.Students
-                    .Where(s => s.StandardId == studentCreate.StandardId)
+                    .Where(s => s.StandardId == standard.Id)
                     .MaxAsync(s => (int?)s.RollNo) ?? 0;
 
                 Student student = StudentMapper.Map(studentCreate);
                 student.RollNo = maxRollNoForStandard + 1; // Generate a new RollNo based on the StandardId
-                student.GrNo = standard.StandardNumber+"-"+standard.Section+"-"+student.RollNo;
+                student.GrNo = standard.StandardNumber + "-" + standard.Section + "-" + student.RollNo;
+                student.StandardId = standard.Id;
 
                 await dbContext.Students.AddAsync(student);
                 await dbContext.SaveChangesAsync();
 
-                var studentDto =  StudentMapper.MapToDto(student);
+                var studentDto = StudentMapper.MapToDto(student);
 
                 return Ok(studentDto);
             }
