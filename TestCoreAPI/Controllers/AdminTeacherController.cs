@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Xml;
@@ -98,6 +98,10 @@ namespace TestCoreApi.Controllers
                     await dbContext.SaveChangesAsync();
 
                     return Ok();
+                adminteacher.Id = Guid.NewGuid();
+                await dbContext.AdminTeachers.AddAsync(adminteacher);
+                await dbContext.SaveChangesAsync();
+                return Ok();
             }
             catch (Exception ex)
             {
